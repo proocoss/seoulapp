@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import styles from "./header.css";
 
 class CommonHeader extends Component {
 
@@ -9,14 +10,14 @@ class CommonHeader extends Component {
                     <ul>
                         <li>
                             <div
-                                className=""
+                                className="ppp"
                                 onClick={this.props.backHistory}>
                                 뒤로가기
                             </div>
                         </li>
                         <li>
                             <div
-                                className="">
+                                className={styles.ppp}>
                                 { this.props.title }
                             </div>
                         </li>

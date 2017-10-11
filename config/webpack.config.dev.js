@@ -166,6 +166,9 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  // [jh.lee] css module setting
+                  modules: true,
+                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
                 },
               },
               {
@@ -245,6 +248,13 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // [jh.lee] vender config
+    new webpack.optimize.CommonsChunkPlugin({
+        name : "vendor",
+        minChunks: function (module) {
+            return module.context && module.context.indexOf('node_modules') !== -1;
+        }
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
