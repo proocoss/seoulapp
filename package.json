@@ -54,8 +54,8 @@
     "watch-css": "npm-run-all build-css recursive-css",
     "start-js": "cross-env NODE_PATH=src node scripts/start.js",
     "build-js": "cross-env NODE_PATH=src node scripts/build.js",
-    "start": "npm-run-all watch-css start-js",
-    "build": "npm-run-all build-css build-js",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm-run-all -p build-css build-js",
     "test": "cross-env NODE_PATH=src node scripts/test.js --env=jsdom"
   },
   "jest": {
