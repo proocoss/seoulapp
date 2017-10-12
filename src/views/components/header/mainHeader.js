@@ -1,5 +1,17 @@
+// npm modules
 import React, {Component} from "react";
-import {Link} from "react-router";
+import classNames from 'classnames/bind';
+
+// style
+import mainHeader from "./mainHeader.css";
+
+// image
+import menuIcon from "assets/images/menu-icon.png";
+import searchIcon from "assets/images/search-icon.png";
+
+const st = classNames.bind(mainHeader);
+
+// import {Link} from "react-router";
 
 class MainHeader extends Component {
     /**
@@ -18,14 +30,18 @@ class MainHeader extends Component {
     // }
 
     render() {
-        const {router} = this.context;
+        // const {router} = this.context;
 
         return (
             <header>
                 <nav>
                     <ul>
+                        <li className={st("item", "menu-icon")}><img src={menuIcon} alt="menu-icon" /></li>
+                        <li className={st("item", "header-title")}>서울시 청소년활동</li>
+                        <li className={st("item", "search-icon")}><img src={searchIcon} alt="search-icon" /></li>
+                        {/*
                         <li>
-                            <Link to="/"
+                            <Link to="/activity"
                                 className={"nav-item" + router.isActive("/", true) ? "active" : ""}>
                                 청소년 인증 프로그램
                             </Link>
@@ -42,7 +58,6 @@ class MainHeader extends Component {
                                 청소년 국제 프로그램
                             </Link>
                         </li>
-                        {/*
                         <li>
                             <div onClick={this.testFunc}>페이스북 로그인</div>
                         </li>

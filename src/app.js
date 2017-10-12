@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk';
 
 // user modules
 import Reducer from "modules/index";
-import {Main, Activity, International, Serve, Detail, Content} from "views/pages";
+import {Main, Home, Activity, International, Serve, Detail, Content} from "views/pages";
 
 let store = createStore(
     Reducer, 
@@ -24,7 +24,8 @@ class App extends Component {
             <Provider store={store}>
                 <Router history={browserHistory}>
                     <Route exact path="/" component={Main}>
-                        <IndexRoute component={Activity} />
+                        <IndexRoute component={Home} />
+                        <Route path="activity" component={Activity} />
                         <Route path="serve" component={Serve} />
                         <Route path="international" component={International} />
                     </Route>
