@@ -1,5 +1,12 @@
 // npm modules
 import React, {Component} from "react";
+import {Link} from "react-router";
+import classNames from 'classnames/bind';
+
+// style
+import home from "./home.css";
+
+const st = classNames.bind(home);
 
 // user modules
 
@@ -52,7 +59,32 @@ class Home extends Component {
     render() {
         return(
             <section>
-                Home
+                <ul>
+                    <li>
+                        <Link className={st("activity-bg")} to="/activity">
+                            <div className={st("info-box")}>
+                                <span className={st("title")}>청소년 인증 프로그램</span>
+                                <span className={st("count")}>15 ITEMS</span>
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={st("serve-bg")} to="/serve">
+                            <div className={st("info-box")}>
+                                <span className={st("title")}>청소년 자원봉사 프로그램</span>
+                                <span className={st("count")}>15 ITEMS</span>
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={st("international-bg")} to="/international">
+                            <div className={st("info-box")}>
+                                <span className={st("title")}>청소년 국제 프로그램</span>
+                                <span className={st("count")}>15 ITEMS</span>
+                            </div>
+                        </Link>
+                    </li>
+                </ul>
             </section>
         );
     }

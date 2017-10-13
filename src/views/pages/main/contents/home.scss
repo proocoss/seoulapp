@@ -1,0 +1,60 @@
+section {
+
+    ul {
+
+        li {
+
+            a {
+                position: relative;
+                padding-top: 53.3%;
+                width: 100%;
+                display: block;
+                text-decoration: none;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                .info-box {
+                    margin: auto;
+                    position: absolute;
+                    display: table;
+                    top: 0px;
+                    bottom: 0px;
+                    width: 100%;
+                    text-align: center;
+
+                    span {
+                        display: inline-block;
+                        text-align: center;
+                        color: #ffffff;
+                    }
+
+                    .title {
+                        margin-bottom: 20px;
+                        width: 100%;
+                        font-size: 24px;
+                        font-weight: bold;
+                    }
+
+                    .count {
+                        padding: 13px;
+                        min-width: 78px;
+                        font-size: 10px;
+                        border: 1px solid #ffffff;
+                    }
+                }
+            }
+            
+            .activity-bg {
+                background-image: url(assets/images/main-activity.png);
+            }
+
+            .serve-bg {
+                background-image: url(assets/images/main-serve.png);
+            }
+
+            .international-bg {
+                background-image: url(assets/images/main-international.png);
+            }
+        }
+    }
+}
