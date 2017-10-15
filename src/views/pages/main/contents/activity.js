@@ -2,9 +2,18 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import classNames from 'classnames/bind';
+
+// style
+import activity from "./activity.css";
+
+// image
+import dateIcon from "assets/images/date-icon.png";
 
 // user modules
 import {SET_ACTIVITY_LIST, setListData} from "modules/state";
+
+const st = classNames.bind(activity);
 
 class Activity extends Component {
 
@@ -66,18 +75,29 @@ class Activity extends Component {
     /**
      * User func
      */
+
+    sortTarget(_target) {
+        let parseItem = _target.splite(",");
+        console.log(parseItem);
+    }
+
     makeList() {
         let items = this.props.listData.data;
 
         return items.map((_item, _idx) => {
+            let splitItem = _item.target.split(",");
+            let result = "";
+
             return (
-                <Link to={"/detail/activity/" + _item.key1} key={_idx}>
-                    <ul>
-                        <li>기관명 : {_item.organNm}</li>
-                        <li>프로그램명 : {_item.pgmNm}</li>
-                        <li>참가비 : {_item.price}</li>
+                <Link className={ st("link-wrap") } to={"/detail/activity/" + _item.key1} key={_idx}>
+                    <ul className={ st("list-wrap") }>
+                        <li className={ st("title") }>{_item.pgmNm}</li>
+                        <ul className={ st("info-wrap") }>    
+                            <li className={ st("item") }>{_item.organNm}</li>
+                            <li className={ st("item") }>참가비 <span className={ st("price") }>{_item.price}</span></li>
+                        </ul>
                         <li>참가대상 : {_item.target}</li>
-                        <li>등록일 : {_item.sdate}</li>
+                        <li className={ st("date") }><img className={ st("date-icon") } src={dateIcon} alt="date-icon" /> {_item.sdate.replace(/\//gi, ".")}</li>
                     </ul>
                 </Link>
             );
