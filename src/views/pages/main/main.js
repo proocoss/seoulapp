@@ -3,11 +3,18 @@ import React, {Component} from "react";
 
 // user modules
 import {MainHeader} from "views/components";
+import {CommonHeader} from "views/components";
 
 class Main extends Component {
     constructor(props) {
         console.log("constructor Main");
         super(props);
+
+        // page name
+        this.page = this.props.location.pathname;
+
+        this.getTitle = this.getTitle.bind(this);
+        this.backHistory = this.backHistory.bind(this);
     }
 
     componentWillMount() {
@@ -20,7 +27,8 @@ class Main extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log("componentWillReceiveProps Main");
-
+        // page name
+        this.page = nextProps.location.pathname;
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -40,10 +48,40 @@ class Main extends Component {
         console.log("componentWillUnmount Main");
     }
 
+    /**
+     * User func
+     */
+    getTitle() {
+        let title;
+
+        switch(this.page) {
+            case "/activity" :
+                title = "청소년 인증 프로그램";
+                break;
+            case "/serve" :
+                title = "청소년 자원봉사 프로그램";
+                break;
+            case "/international" :
+                title = "청소년 국제 프로그램";
+                break;
+            default :
+            title = "";
+                break;
+        }
+
+        return title;
+    }
+
+    backHistory() {
+        this.props.router.goBack();
+    }
+
     render() {
         return (
             <div>
-                <MainHeader />
+                {
+                    this.page === "/" ? <MainHeader /> : <CommonHeader title={ this.getTitle() } backHistory={ this.backHistory } />
+                }
                 {this.props.children}
             </div>
         );

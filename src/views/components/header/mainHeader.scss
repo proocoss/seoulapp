@@ -1,37 +1,31 @@
-header {
+.header-wrap {
+    padding: 30px 0px;
+    position: relative;
+    width: 100%;
 
-    nav {
-
-        ul {
-            padding: 30px 0px;
-            position: relative;
-            width: 100%;
-
-            .item {
-                position: absolute;
-                top: 19px;
-                img {
-                    width: 24px;
-                    height: 24px;
-                }
-            }
-
-            .menu-icon {
-                left: 10px;
-            }
-
-            .header-title {
-                top: 22px;
-                width: 100%;
-                font-size: 18px;
-                font-weight: bold;
-                color: #444444;
-                text-align: center;
-            }
-
-            .search-icon {
-                right: 10px;
-            }
+    .item {
+        position: absolute;
+        top: 19px;
+        .icon-img {
+            width: 24px;
+            height: 24px;
         }
+    }
+
+    .menu-icon {
+        left: 10px;
+    }
+
+    .header-title {
+        top: 22px;
+        width: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        color: #444444;
+        text-align: center;
+    }
+
+    .search-icon {
+        right: 10px;
     }
 }

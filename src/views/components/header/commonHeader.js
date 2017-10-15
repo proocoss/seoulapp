@@ -1,4 +1,15 @@
+// npm modules
 import React, {Component} from "react";
+import classNames from 'classnames/bind';
+
+// style
+import commonHeader from "./commonHeader.css";
+
+// image
+import searchIcon from "assets/images/search-icon.png";
+import backIcon from "assets/images/back-icon.png";
+
+const st = classNames.bind(commonHeader);
 
 class CommonHeader extends Component {
 
@@ -6,20 +17,10 @@ class CommonHeader extends Component {
         return (
             <header>
                 <nav>
-                    <ul>
-                        <li>
-                            <div
-                                className=""
-                                onClick={this.props.backHistory}>
-                                뒤로가기
-                            </div>
-                        </li>
-                        <li>
-                            <div
-                                className="">
-                                { this.props.title }
-                            </div>
-                        </li>
+                    <ul className={ st("header-wrap") }>
+                        <li className={ st("item", "menu-icon") } onClick={ this.props.backHistory }><img className={ st("icon-img") } src={ backIcon } alt="menu-icon" /></li>
+                        <li className={ st("item", "header-title") }>{ this.props.title }</li>
+                        <li className={ st("item", "search-icon") }><img className={ st("icon-img") } src={ searchIcon } alt="search-icon" /></li>
                     </ul>
                 </nav>
             </header>

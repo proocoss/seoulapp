@@ -31,10 +31,10 @@ class MainHeader extends Component {
         return (
             <header>
                 <nav>
-                    <ul>
-                        <li className={st("item", "menu-icon")}><img src={menuIcon} alt="menu-icon" /></li>
-                        <li className={st("item", "header-title")}>서울시 청소년활동</li>
-                        <li className={st("item", "search-icon")}><img src={searchIcon} alt="search-icon" /></li>
+                    <ul className={ st("header-wrap") }>
+                        <li className={ st("item", "menu-icon") }><img className={ st("icon-img") } src={ menuIcon } alt="menu-icon" /></li>
+                        <li className={ st("item", "header-title") }>서울시 청소년활동</li>
+                        <li className={ st("item", "search-icon") }><img className={ st("icon-img") } src={ searchIcon } alt="search-icon" /></li>
                         {/*
                         <li>
                             <div onClick={this.testFunc}>페이스북 로그인</div>
