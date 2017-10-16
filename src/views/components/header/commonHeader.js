@@ -17,10 +17,16 @@ class CommonHeader extends Component {
         return (
             <header>
                 <nav>
-                    <ul className={ st("header-wrap") }>
+                    <ul className={ st("header-wrap", this.props.type) }>
                         <li className={ st("item", "menu-icon") } onClick={ this.props.backHistory }><img className={ st("icon-img") } src={ backIcon } alt="menu-icon" /></li>
                         <li className={ st("item", "header-title") }>{ this.props.title }</li>
-                        <li className={ st("item", "search-icon") }><img className={ st("icon-img") } src={ searchIcon } alt="search-icon" /></li>
+                        {
+                            this.props.type !== "detail"
+                                ?
+                                <li className={ st("item", "search-icon") }><img className={ st("icon-img") } src={ searchIcon } alt="search-icon" /></li>
+                                :
+                                ""
+                        }
                     </ul>
                 </nav>
             </header>

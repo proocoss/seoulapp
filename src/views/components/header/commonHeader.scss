@@ -45,3 +45,13 @@
         clear: both;
     }
 }
+
+.detail {
+    .header-title {
+        width: 85%;
+        
+        @media (max-width: 360px) {
+            width: 80%;
+        }
+    }
+}
