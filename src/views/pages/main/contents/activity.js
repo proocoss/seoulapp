@@ -88,6 +88,25 @@ class Activity extends Component {
             let splitItem = _item.target.split(",");
             let result = "";
 
+            result += splitItem.map((_item, _idx) => {
+                let resultTag;
+                
+                switch(_item.charAt(0)) {
+                    case "초" :
+                        // _item.replace("초", "")
+                        break;
+                    case "중" :
+
+                        break;
+                    case "고" :
+
+                        break;
+                    case "학" :
+
+                        break;
+                 }
+            });
+
             return (
                 <Link className={ st("link-wrap") } to={"/detail/activity/" + _item.key1} key={_idx}>
                     <ul className={ st("list-wrap") }>
