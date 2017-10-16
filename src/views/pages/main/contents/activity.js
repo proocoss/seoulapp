@@ -12,6 +12,7 @@ import dateIcon from "assets/images/date-icon.png";
 
 // user modules
 import {SET_ACTIVITY_LIST, setListData} from "modules/state";
+import {MoreType1} from "views/components";
 
 const st = classNames.bind(activity);
 
@@ -104,9 +105,11 @@ class Activity extends Component {
                         count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "학" :
-                        bgType = "far";
+                        bgType = "par";
                         type = "학";
                         count = _item.replace(/[^0-9]/g, "");
+                        break;
+                    default :
                         break;
                 }
 
@@ -159,11 +162,13 @@ class Activity extends Component {
                             ""
                     }
                 </div>
-                <div 
-                    className="more-btn-wrap"
-                    onClick={this.requestList}>
-                    더보기
-                </div>
+                {
+                    this.props.listData
+                        ?
+                        <MoreType1 requestList={this.requestList} />
+                        :
+                        ""
+                }
             </section>
         );
     }

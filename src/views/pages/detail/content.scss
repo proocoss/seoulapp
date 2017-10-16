@@ -1,0 +1,41 @@
+.content-wrap {
+
+    .table-wrap {
+        width: 100%;
+
+        .row-wrap {
+            padding: 10px 0px;
+
+            .title {
+                padding: 14px 0px;
+                width: 90px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #444444;
+                border-right: 1px solid #d4dce1;
+            }
+
+            .value {
+                padding: 14px 10px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #81878e;
+            }
+
+            &:nth-child(2n) {
+                background-color: #f3f7fb;
+            }
+        }
+    }
+    
+    .detail-wrap {
+        padding: 16px;
+
+        .detail {
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #81878e;
+            line-height: 1.4;
+        }
+    }
+}

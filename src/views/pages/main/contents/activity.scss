@@ -11,6 +11,11 @@
             font-size: 14px;
             font-weight: bold;
             color: #50d2c2;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+            overflow: hidden;
         }
 
         .info-wrap {
@@ -40,7 +45,7 @@
                     display: inline-block;
                     
                     .item {
-                        padding: 3px;
+                        padding: 3px 6px;
                         font-size: 10px;
                     }
 

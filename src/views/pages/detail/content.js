@@ -1,8 +1,11 @@
 // npm modules
 import React, {Component} from "react";
+import classNames from 'classnames/bind';
 
-// user modules
+// style
+import content from "./content.css";
 
+const st = classNames.bind(content);
 
 class Content extends Component {
     constructor(props) {
@@ -51,21 +54,79 @@ class Content extends Component {
         switch(this.props.page) {
             case "activity" :
                 content = (
-                    <ul>
-                        <li>{item.nums}</li>
-                        <li>{item.organNm}</li>
-                        <li>{item.price}</li>
-                        <li>{item.target}</li>
-                        <li>{item.managerNm}</li>
-                        <li>{item.email}</li>
-                        <li>{item.tel}</li>
-                        <li dangerouslySetInnerHTML={{ __html : item.info1.replace(/\n/g, "<br>") }}></li>
-                        <li dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></li>
-                    </ul>
+                    <div className={ st("content-wrap") }>
+                        <table className={ st("table-wrap") }>
+                            <tbody>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>프로그램명</th>
+                                  <td className={ st("value") }>{item.pgmNm}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>참가비</th>
+                                  <td className={ st("value") }>{item.price}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>참가대상</th>
+                                  <td className={ st("value") }>{item.target}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>담당장</th>
+                                  <td className={ st("value") }>{item.managerNm}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>이메일</th>
+                                  <td className={ st("value") }>{item.email}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>전화번호</th>
+                                  <td className={ st("value") }>{item.tel}</td>
+                               </tr>
+                           </tbody>
+                        </table>
+                        <div className={ st("detail-wrap") }>
+                            <div className={ st("detail") } dangerouslySetInnerHTML={{ __html : item.info1.replace(/\n/g, "<br>") }}></div>
+                            <div className={ st("detail") } dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></div>
+                        </div>
+                    </div>
                 );
                 break;
             case "serve" :
                 content = (
+                    <div className={ st("content-wrap") }>
+                        <table className={ st("table-wrap") }>
+                            <tbody>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>프로그램명</th>
+                                  <td className={ st("value") }>{item.pgmNm}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>참가비</th>
+                                  <td className={ st("value") }>{item.price}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>참가대상</th>
+                                  <td className={ st("value") }>{item.target}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>담당장</th>
+                                  <td className={ st("value") }>{item.managerNm}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>주소</th>
+                                  <td className={ st("value") }>{item.addr}</td>
+                               </tr>
+                               <tr className={ st("row-wrap") }>
+                                  <th className={ st("title") }>전화번호</th>
+                                  <td className={ st("value") }>{item.tel}</td>
+                               </tr>
+                           </tbody>
+                        </table>
+                        <div className={ st("detail-wrap") }>
+                            <div className={ st("detail") } dangerouslySetInnerHTML={{ __html : item.info1.replace(/\n/g, "<br>") }}></div>
+                            <div className={ st("detail") } dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></div>
+                        </div>
+                    </div>
+                    /*
                     <ul>
                         <li>{item.organNm}</li>
                         <li>{item.price}</li>
@@ -79,6 +140,7 @@ class Content extends Component {
                         <li dangerouslySetInnerHTML={{ __html : item.info1.replace(/\n/g, "<br>") }}></li>
                         <li dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></li>
                     </ul>
+                    */
                 );
                 break;
             case "international" :
