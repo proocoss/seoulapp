@@ -75,37 +75,48 @@ class Activity extends Component {
     /**
      * User func
      */
-
-    sortTarget(_target) {
-        let parseItem = _target.splite(",");
-        console.log(parseItem);
-    }
-
     makeList() {
         let items = this.props.listData.data;
 
         return items.map((_item, _idx) => {
             let splitItem = _item.target.split(",");
-            let result = "";
+            let result = [];
 
-            result += splitItem.map((_item, _idx) => {
-                let resultTag;
+            result.push(splitItem.map((_item, _idx) => {
+                let count = "";
+                let type = "";
+                let bgType = "";
                 
                 switch(_item.charAt(0)) {
                     case "초" :
-                        // _item.replace("초", "")
+                        bgType = "ele";
+                        type = "초";
+                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "중" :
-
+                        bgType = "mid";
+                        type = "중";
+                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "고" :
-
+                        bgType = "hig";
+                        type = "고";
+                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "학" :
-
+                        bgType = "far";
+                        type = "학";
+                        count = _item.replace(/[^0-9]/g, "");
                         break;
-                 }
-            });
+                }
+
+                return (
+                    <div className={ st("target") }>
+                        <span className={ st("item", "type", bgType) }>{type}</span>
+                        <span className={ st("item", "count") }>{count}</span>
+                    </div>
+                );
+            }));
 
             return (
                 <Link className={ st("link-wrap") } to={"/detail/activity/" + _item.key1} key={_idx}>
@@ -115,8 +126,10 @@ class Activity extends Component {
                             <li className={ st("item") }>{_item.organNm}</li>
                             <li className={ st("item") }>참가비 <span className={ st("price") }>{_item.price}</span></li>
                         </ul>
-                        <li>참가대상 : {_item.target}</li>
-                        <li className={ st("date") }><img className={ st("date-icon") } src={dateIcon} alt="date-icon" /> {_item.sdate.replace(/\//gi, ".")}</li>
+                        <ul className={ st("term-wrap") }>
+                            <li className={ st("target-wrap") }>{result}</li>
+                            <li className={ st("date-wrap") }><img className={ st("date-icon") } src={dateIcon} alt="date-icon" /> {_item.sdate.replace(/\//gi, ".")}</li>
+                        </ul>
                     </ul>
                 </Link>
             );
