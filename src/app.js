@@ -9,11 +9,12 @@ import ReduxThunk from 'redux-thunk';
 import Reducer from "modules/index";
 import {Main, Home, Activity, International, Serve, Detail, Content} from "views/pages";
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 let store = createStore(
     Reducer, 
-    compose(
-        applyMiddleware(ReduxThunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(
+        applyMiddleware(ReduxThunk)
     )
 );
 
