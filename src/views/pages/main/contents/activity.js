@@ -88,26 +88,28 @@ class Activity extends Component {
                 let type = "";
                 let bgType = "";
                 
+                count = _item.replace(/[^0-9]/g, "");
+
                 switch(_item.charAt(0)) {
                     case "초" :
                         bgType = "ele";
                         type = "초";
-                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "중" :
                         bgType = "mid";
                         type = "중";
-                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "고" :
                         bgType = "hig";
                         type = "고";
-                        count = _item.replace(/[^0-9]/g, "");
                         break;
                     case "학" :
                         bgType = "par";
                         type = "학";
-                        count = _item.replace(/[^0-9]/g, "");
+                        break;
+                    case "대" :
+                        bgType = "uni";
+                        type = "대";
                         break;
                     default :
                         break;

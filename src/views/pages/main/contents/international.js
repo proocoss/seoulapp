@@ -2,9 +2,16 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import classNames from 'classnames/bind';
+
+// style
+import international from "./international.css";
 
 // user modules
 import {SET_INTERNATIONAL_LIST, setListData} from "modules/state";
+import {MoreType1} from "views/components";
+
+const st = classNames.bind(international);
 
 class International extends Component {
 
@@ -71,27 +78,14 @@ class International extends Component {
 
         return items.map((_item, _idx) => {
             return (
-                <Link to={"/detail/international/" + _idx} key={_idx}>
-                    <ul>
-                        <li>활동프로그램이름 : {_item.arName}</li>
-                        {/*<li>내용 : {_item.arContent[0]}</li>*/}
-                        {/*<li dangerouslySetInnerHTML={{__html: _item.arContent[0]}}></li>*/}
-                        <li>연도 : {_item.arYear}</li>
-                        {/*<li>상태코드 : {_item.arStatus[0]}</li>*/}
-                        {
-                            _item.arStartDate
-                            ?
-                            <li>시작일자 : {_item.arStartDate}</li>
-                            :
-                            ""
-                        }
-                        {
-                            _item.arEndDate
-                            ?
-                            <li>종료일자 : {_item.arEndDate}</li>
-                            :
-                            ""
-                        }
+                <Link className={ st("link-wrap") } to={"/detail/international/" + _idx} key={_idx}>
+                    <ul className={ st("list-wrap") }>
+                        <li className={ st("year") }>{_item.arYear}</li>
+                        <li className={ st("title") }>{_item.arName}</li>
+                        <ul className={ st("info-wrap") }>    
+                            <li className={ st("item") }>시작일자 <span className={ st("date") }>{ _item.arStartDate ? _item.arStartDate.replace(/\//gi, ".") : "" }</span></li>
+                            <li className={ st("item") }>종료일자 <span className={ st("date") }>{ _item.arEndDate ? _item.arEndDate.replace(/\//gi, ".") : "" }</span></li>
+                        </ul>
                     </ul>
                 </Link>
             );
@@ -121,11 +115,13 @@ class International extends Component {
                             ""
                     }
                 </div>
-                <div 
-                    className="more-btn-wrap"
-                    onClick={this.requestList}>
-                    더보기
-                </div>
+                {
+                    this.props.listData
+                        ?
+                        <MoreType1 requestList={this.requestList} />
+                        :
+                        ""
+                }
             </section>
         );
     }
