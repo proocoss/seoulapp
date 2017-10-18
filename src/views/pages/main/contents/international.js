@@ -79,7 +79,7 @@ class International extends Component {
         return items.map((_item, _idx) => {
             return (
                 <Link className={ st("link-wrap") } to={"/detail/international/" + _idx} key={_idx}>
-                    <ul className={ st("list-wrap") }>
+                    <ul className={ st("list-box") }>
                         <li className={ st("year") }>{_item.arYear}</li>
                         <li className={ st("title") }>{_item.arName}</li>
                         <ul className={ st("info-wrap") }>    
@@ -105,16 +105,14 @@ class International extends Component {
 
     render() {
         return(
-            <section>
-                <div className="list-wrap">
-                    {
-                        this.props.listData
-                            ?
-                            this.makeList()
-                            :
-                            ""
-                    }
-                </div>
+            <section className={ st("list-wrap") }>
+                {
+                    this.props.listData
+                        ?
+                        this.makeList()
+                        :
+                        ""
+                }
                 {
                     this.props.listData
                         ?

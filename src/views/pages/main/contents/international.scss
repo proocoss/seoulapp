@@ -1,44 +1,48 @@
-.link-wrap {
-    text-decoration: none;
+.list-wrap {
+    margin-top: 70px;
 
-    .list-wrap {
-        margin: 10px;
-        border-bottom: 1px solid #e5e5e5;
+    .link-wrap {
+        text-decoration: none;
 
-        .year {
-            margin-bottom: 5px;
-            padding: 4px 0px;
-            width: 30px;
-            font-size: 10px;
-            color: #ffffff;
-            text-align: center;
-            background-color: #d667cd;
-        }
+        .list-box {
+            margin: 10px;
+            border-bottom: 1px solid #e5e5e5;
 
-        .title {
-            padding-bottom: 8px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #d667cd;
+            .year {
+                margin-bottom: 5px;
+                padding: 4px 0px;
+                width: 30px;
+                font-size: 10px;
+                color: #ffffff;
+                text-align: center;
+                background-color: #d667cd;
+            }
 
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            word-wrap: normal;
-            overflow: hidden;
-        }
+            .title {
+                padding-bottom: 8px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #d667cd;
 
-        .info-wrap {
-            padding-bottom: 5px;
-            padding-left: 15px;
-            list-style: disc;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-wrap: normal;
+                overflow: hidden;
+            }
 
-            .item {
-                padding-bottom: 6px;
-                font-size: 12px;
-                color: #8b4c86;
+            .info-wrap {
+                padding-bottom: 5px;
+                padding-left: 15px;
+                list-style: disc;
 
-                .date {
-                    color: #444444;
+                .item {
+                    padding-bottom: 6px;
+                    font-size: 12px;
+                    color: #8b4c86;
+
+                    .date {
+                        color: #444444;
+                    }
                 }
             }
         }

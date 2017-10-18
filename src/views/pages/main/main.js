@@ -65,7 +65,7 @@ class Main extends Component {
                 title = "청소년 국제 프로그램";
                 break;
             default :
-            title = "";
+                title = "";
                 break;
         }
 

@@ -126,21 +126,6 @@ class Content extends Component {
                             <div className={ st("detail") } dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></div>
                         </div>
                     </div>
-                    /*
-                    <ul>
-                        <li>{item.organNm}</li>
-                        <li>{item.price}</li>
-                        <li>{item.target}</li>
-                        <li>{item.sdate}</li>
-                        <li>{item.managerNm}</li>
-                        <li>{item.addr}</li>
-                        <li>{item.zip}</li>
-                        <li>{item.place}</li>
-                        <li>{item.tel}</li>
-                        <li dangerouslySetInnerHTML={{ __html : item.info1.replace(/\n/g, "<br>") }}></li>
-                        <li dangerouslySetInnerHTML={{ __html : item.info2.replace(/\n/g, "<br>") }}></li>
-                    </ul>
-                    */
                 );
                 break;
             case "international" :
@@ -157,7 +142,7 @@ class Content extends Component {
 
     render() {
         return (
-            <section>
+            <section className={ st("total-detail-wrap") }>
                 { this.createContent() }
             </section>
         );

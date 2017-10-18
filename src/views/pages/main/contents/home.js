@@ -6,6 +6,11 @@ import classNames from 'classnames/bind';
 // style
 import home from "./home.css";
 
+// image
+import mainIconActivity from "assets/images/main-icon-activity.png";
+import mainIconServe from "assets/images/main-icon-serve.png";
+import mainIconInternational from "assets/images/main-icon-international.png";
+
 const st = classNames.bind(home);
 
 // user modules
@@ -61,9 +66,10 @@ class Home extends Component {
             <section>
                 <ul>
                     <li>
-                        <Link className={st("activity-bg")} to="/activity">
-                            <div className={st("info-box")}>
-                                <span className={st("title")}>청소년 인증 프로그램</span>
+                        <Link className={ st("activity-bg") } to="/activity">
+                            <div className={ st("info-box") }>
+                                <span className={ st("title") }>청소년 인증 프로그램</span>
+                                <img className={ st("act-img") } src={mainIconActivity} alt="main-icon-activity" />
                             </div>
                         </Link>
                     </li>
@@ -71,6 +77,7 @@ class Home extends Component {
                         <Link className={st("serve-bg")} to="/serve">
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 자원봉사 프로그램</span>
+                                <img className={ st("ser-img") } src={mainIconServe} alt="main-icon-serve" />
                             </div>
                         </Link>
                     </li>
@@ -78,6 +85,7 @@ class Home extends Component {
                         <Link className={st("international-bg")} to="/international">
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 국제 프로그램</span>
+                                <img className={ st("int-img") } src={mainIconInternational} alt="main-icon-international" />
                             </div>
                         </Link>
                     </li>

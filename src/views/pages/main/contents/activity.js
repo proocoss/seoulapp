@@ -118,14 +118,14 @@ class Activity extends Component {
                 return (
                     <div className={ st("target") }>
                         <span className={ st("item", "type", bgType) }>{type}</span>
-                        <span className={ st("item", "count") }>{count}</span>
+                        <span className={ st("item", "count", "c-" + bgType) }>{count}</span>
                     </div>
                 );
             }));
 
             return (
                 <Link className={ st("link-wrap") } to={"/detail/activity/" + _item.key1} key={_idx}>
-                    <ul className={ st("list-wrap") }>
+                    <ul className={ st("list-box") }>
                         <li className={ st("title") }>{_item.pgmNm}</li>
                         <ul className={ st("info-wrap") }>    
                             <li className={ st("item") }>{_item.organNm}</li>
@@ -154,16 +154,14 @@ class Activity extends Component {
 
     render() {
         return(
-            <section>
-                <div className="list-wrap">
-                    {
-                        this.props.listData
-                            ?
-                            this.makeList()
-                            :
-                            ""
-                    }
-                </div>
+            <section className={ st("list-wrap") }>
+                {
+                    this.props.listData
+                        ?
+                        this.makeList()
+                        :
+                        ""
+                }
                 {
                     this.props.listData
                         ?

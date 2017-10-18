@@ -1,57 +1,64 @@
 .header-wrap {
-    padding: 17px 0px;
-    border-bottom: 1px solid #e5e5e5;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    background-color: #ffffff;
 
-    .item {
+    .header-box {
+        padding: 16px 0px;
+        border-bottom: 1px solid #e5e5e5;
 
-        .icon-img {
-            width: 24px;
-            height: 24px;
+        .item {
+
+            .icon-img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .menu-icon {
+            margin-left: 10px;
+            float: left;
+        }
+
+        .header-title {
+            margin-top: 4px;
+            margin-left: 15px;
+            width: 75%;
+            float: left;
+            font-size: 16px;
+            font-weight: bold;
+            color: #444444;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+            overflow: hidden;
+
+            @media (max-width: 360px) {
+                width: 60%;
+            }
+        }
+
+        .search-icon {
+            margin-right: 10px;
+            float: right;
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
         }
     }
 
-    .menu-icon {
-        margin-left: 10px;
-        float: left;
-    }
-
-    .header-title {
-        margin-top: 4px;
-        margin-left: 15px;
-        width: 75%;
-        float: left;
-        font-size: 16px;
-        font-weight: bold;
-        color: #444444;
-
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        word-wrap: normal;
-        overflow: hidden;
-
-        @media (max-width: 360px) {
-            width: 60%;
-        }
-    }
-
-    .search-icon {
-        margin-right: 10px;
-        float: right;
-    }
-
-    &:after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-}
-
-.detail {
-    .header-title {
-        width: 85%;
-        
-        @media (max-width: 360px) {
-            width: 80%;
+    .detail {
+        .header-title {
+            width: 85%;
+            
+            @media (max-width: 360px) {
+                width: 80%;
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ class MainHeader extends Component {
                 <nav>
                     <ul className={ st("header-wrap") }>
                         <li className={ st("item", "menu-icon") }><img className={ st("icon-img") } src={ menuIcon } alt="menu-icon" /></li>
-                        <li className={ st("item", "header-title") }>서울시 청소년활동</li>
+                        <li className={ st("item", "header-title") }>고고유스</li>
                         {/*
                         <li>
                             <div onClick={this.testFunc}>페이스북 로그인</div>

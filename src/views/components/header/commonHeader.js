@@ -15,9 +15,9 @@ class CommonHeader extends Component {
 
     render() {
         return (
-            <header>
+            <header className={ st("header-wrap") }>
                 <nav>
-                    <ul className={ st("header-wrap", this.props.type) }>
+                    <ul className={ st("header-box", this.props.type) }>
                         <li className={ st("item", "menu-icon") } onClick={ this.props.backHistory }><img className={ st("icon-img") } src={ backIcon } alt="menu-icon" /></li>
                         <li className={ st("item", "header-title") }>{ this.props.title }</li>
                         {
