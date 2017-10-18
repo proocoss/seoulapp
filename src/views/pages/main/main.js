@@ -1,9 +1,11 @@
 // npm modules
 import React, {Component} from "react";
+import {connect} from "react-redux";
 
 // user modules
 import {MainHeader} from "views/components";
 import {CommonHeader} from "views/components";
+import {LoadingType1} from "views/components";
 
 class Main extends Component {
     constructor(props) {
@@ -83,9 +85,18 @@ class Main extends Component {
                     this.page === "/" ? <MainHeader /> : <CommonHeader title={ this.getTitle() } backHistory={ this.backHistory } />
                 }
                 {this.props.children}
+                {
+                    this.props.isLoading && <LoadingType1 />
+                }
             </div>
         );
     }
 }
 
-export default Main;
+const mapStateToProps = (_state, _ownProps) => {
+    return {
+        isLoading : _state.state.isLoading
+    };
+};
+
+export default connect(mapStateToProps)(Main);

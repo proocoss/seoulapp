@@ -49,7 +49,6 @@ class Activity extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log("componentWillReceiveProps Activity");
-
     }
 
     shouldComponentUpdate(nextProps, nextState) {

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 // user modules
 import {CommonHeader} from "views/components";
+import {LoadingType1} from "views/components";
 import {SET_ACTIVITY_DETAIL, SET_SERVE_DETAIL, SET_INTERNATIONAL_DETAIL,  setListData} from "modules/state";
 
 class Detail extends Component {
@@ -125,6 +126,9 @@ class Detail extends Component {
                             }
                         )
                 }
+                {
+                    this.props.isLoading && <LoadingType1 />
+                }
             </div>
         );
     }
@@ -153,6 +157,7 @@ const mapStateToProps = (_state, _ownProps) => {
     }
 
     return {
+        isLoading : _state.state.isLoading,
         cancelReq : _state.state.cancelReq,
         detailData : data,
         errorMessage : message
