@@ -27,12 +27,6 @@ const initData = {
         listData : undefined,
         detailData : undefined,
         errorMessage : ""
-    },
-    international : {
-        page : 1,
-        listData : undefined,
-        detailData : undefined,
-        errorMessage : ""
     }
 };
 
@@ -64,13 +58,6 @@ const requestData = (_obj, _dispatch) => {
             break;
         case SET_VACATION_LIST :
             result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getVacationProgrmList/" + page,
-                {
-                    cancelToken: source.token
-                }
-            );
-            break;
-        case SET_INTERNATIONAL_LIST :
-            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getYngbgsIntrlExchgProgrmList/" + page,
                 {
                     cancelToken: source.token
                 }
@@ -116,12 +103,11 @@ export const SET_PAGE_TYPE = "app/modules/state/SET_PAGE_TYPE";
 export const SET_ACTIVITY_LIST = "app/modules/state/SET_ACTIVITY_LIST";
 export const SET_SERVE_LIST = "app/modules/state/SET_SERVE_LIST";
 export const SET_VACATION_LIST = "app/modules/state/SET_VACATION_LIST";
-export const SET_INTERNATIONAL_LIST = "app/modules/state/SET_INTERNATIONAL_LIST";
+
 // Detail
 export const SET_ACTIVITY_DETAIL = "app/modules/state/SET_ACTIVITY_DETAIL";
 export const SET_SERVE_DETAIL = "app/modules/state/SET_SERVE_DETAIL";
 export const SET_VACATION_DETAIL = "app/modules/state/SET_VACATION_DETAIL";
-export const SET_INTERNATIONAL_DETAIL = "app/modules/state/SET_INTERNATIONAL_DETAIL";
 
 /**
  * Action Creators (private, public)
@@ -155,14 +141,9 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             currentListData = _getState().vacation.listData;
             currentPage = _getState().vacation.page;
             break;
-        case SET_INTERNATIONAL_LIST :
-            currentListData = _getState().international.listData;
-            currentPage = _getState().international.page;
-            break;
         case SET_ACTIVITY_DETAIL :
         case SET_SERVE_DETAIL :
         case SET_VACATION_DETAIL :
-        case SET_INTERNATIONAL_DETAIL :
             // Init detailData before call http
             _dispatch(
                 {
@@ -176,112 +157,95 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             break;
     }
 
-    if (type === SET_INTERNATIONAL_DETAIL) {
-
-        currentListData = _getState().international.listData;
-
-        _dispatch(
-            {
-                type : type,
-                detailData : currentListData ? { data : [currentListData.data[Number(_obj.key, 10)]] } : undefined,
-                errorMessage : currentListData ? "" : "empty"
-            }
-        );    
-    } else {
-        return requestData(_obj, _dispatch).then(
-            (_response) => {
-                if (_response.errorMessage) {
-                    switch(type) {
-                        case SET_ACTIVITY_LIST :
-                        case SET_SERVE_LIST :
-                        case SET_VACATION_LIST :
-                        case SET_INTERNATIONAL_LIST :
-                            _dispatch(
-                                {
-                                    type : type,
-                                    listData : currentListData,
-                                    errorMessage : _response.errorMessage
-                                }
-                            );       
-                            break;
-                        case SET_ACTIVITY_DETAIL :
-                        case SET_SERVE_DETAIL :
-                        case SET_VACATION_DETAIL :
-                        case SET_INTERNATIONAL_DETAIL :
-                            _dispatch(
-                                {
-                                    type : type,
-                                    detailData : undefined,
-                                    errorMessage : _response.errorMessage
-                                }
-                            );   
-                            break;
-                        default :
-                            break;
-                    }
-                } else {
-                    switch(type) {
-                        case SET_ACTIVITY_LIST :
-                        case SET_SERVE_LIST :
-                        case SET_VACATION_LIST :
-                        case SET_INTERNATIONAL_LIST :
-                            if (currentListData) {
-
-                                currentListData.data = currentListData.data.concat(_response.data.data);
-
-                                _dispatch(
-                                    {
-                                        type : type,
-                                        page : ++currentPage,
-                                        listData : currentListData,
-                                        errorMessage : ""
-                                    } 
-                                );
-                            } else {
-                                _dispatch(
-                                    {
-                                        type : type,
-                                        page : ++currentPage,
-                                        listData : _response.data,
-                                        errorMessage : ""
-                                    } 
-                                );
+    return requestData(_obj, _dispatch).then(
+        (_response) => {
+            if (_response.errorMessage) {
+                switch(type) {
+                    case SET_ACTIVITY_LIST :
+                    case SET_SERVE_LIST :
+                    case SET_VACATION_LIST :
+                        _dispatch(
+                            {
+                                type : type,
+                                listData : currentListData,
+                                errorMessage : _response.errorMessage
                             }
-                            break;
-                        case SET_ACTIVITY_DETAIL :
-                        case SET_SERVE_DETAIL :
-                        case SET_VACATION_DETAIL :
-                        case SET_INTERNATIONAL_DETAIL :
+                        );       
+                        break;
+                    case SET_ACTIVITY_DETAIL :
+                    case SET_SERVE_DETAIL :
+                    case SET_VACATION_DETAIL :
+                        _dispatch(
+                            {
+                                type : type,
+                                detailData : undefined,
+                                errorMessage : _response.errorMessage
+                            }
+                        );   
+                        break;
+                    default :
+                        break;
+                }
+            } else {
+                switch(type) {
+                    case SET_ACTIVITY_LIST :
+                    case SET_SERVE_LIST :
+                    case SET_VACATION_LIST :
+                        if (currentListData) {
+
+                            currentListData.data = currentListData.data.concat(_response.data.data);
+
                             _dispatch(
                                 {
                                     type : type,
-                                    detailData : _response.data,
+                                    page : ++currentPage,
+                                    listData : currentListData,
                                     errorMessage : ""
                                 } 
                             );
-                            break;
-                        default :
-                            break;
-                    }
+                        } else {
+                            _dispatch(
+                                {
+                                    type : type,
+                                    page : ++currentPage,
+                                    listData : _response.data,
+                                    errorMessage : ""
+                                } 
+                            );
+                        }
+                        break;
+                    case SET_ACTIVITY_DETAIL :
+                    case SET_SERVE_DETAIL :
+                    case SET_VACATION_DETAIL :
+                        _dispatch(
+                            {
+                                type : type,
+                                detailData : _response.data,
+                                errorMessage : ""
+                            } 
+                        );
+                        break;
+                    default :
+                        break;
                 }
-
-                // Stop loading
-                _dispatch(setLoadingState(false, undefined));
             }
-        ).catch(
-            (_error) => {
-                _dispatch(
-                    {
-                        type : type,
-                        listData : currentListData,
-                        errorMessage : _error
-                    }
-                );
 
-                _dispatch(setLoadingState(false, undefined));
-            }
-        );
-    }
+            // Stop loading
+            _dispatch(setLoadingState(false, undefined));
+        }
+    ).catch(
+        (_error) => {
+            _dispatch(
+                {
+                    type : type,
+                    listData : currentListData,
+                    errorMessage : _error
+                }
+            );
+
+            _dispatch(setLoadingState(false, undefined));
+        }
+    );
 };
 
 /**
@@ -364,28 +328,9 @@ const vacation = (_state = initData.vacation, _action) => {
     }
 };
 
-const international = (_state = initData.international, _action) => {
-    switch (_action.type) {
-        case SET_INTERNATIONAL_LIST :
-            return Object.assign({}, _state, {
-                page : _action.page,
-                listData : _action.listData,
-                errorMessage : _action.errorMessage
-            });
-        case SET_INTERNATIONAL_DETAIL :
-            return Object.assign({}, _state, {
-                detailData : _action.detailData,
-                errorMessage : _action.errorMessage
-            });    
-        default :
-            return _state;
-    }
-};
-
 export default combineReducers({
     state : state,
     activity : activity,
     serve : serve,
-    vacation : vacation,
-    international : international
+    vacation : vacation
 });

@@ -10,7 +10,6 @@ import home from "./home.css";
 import mainIconActivity from "assets/images/main-icon-activity.png";
 import mainIconServe from "assets/images/main-icon-serve.png";
 import mainIconVacation from "assets/images/main-icon-international.png";
-import mainIconInternational from "assets/images/main-icon-international.png";
 
 const st = classNames.bind(home);
 
@@ -87,14 +86,6 @@ class Home extends Component {
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 방학활동 프로그램</span>
                                 <img className={ st("int-img") } src={mainIconVacation} alt="main-icon-vacation" />
-                            </div>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={st("international-bg")} to="/international">
-                            <div className={st("info-box")}>
-                                <span className={st("title")}>청소년 국제 프로그램</span>
-                                <img className={ st("int-img") } src={mainIconInternational} alt="main-icon-international" />
                             </div>
                         </Link>
                     </li>

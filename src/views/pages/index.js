@@ -4,7 +4,6 @@ export {default as Home} from "./main/contents/home";
 export {default as Activity} from "./main/contents/activity";
 export {default as Serve} from "./main/contents/serve";
 export {default as Vacation} from "./main/contents/vacation";
-export {default as International} from "./main/contents/international";
 
 // detail
 export {default as Detail} from "./detail/detail";

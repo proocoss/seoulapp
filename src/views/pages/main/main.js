@@ -67,9 +67,6 @@ class Main extends Component {
             case "/vacation" :
                 title = "청소년 방학활동 프로그램";
                 break;
-            case "/international" :
-                title = "청소년 국제 프로그램";
-                break;
             default :
                 title = "";
                 break;
@@ -94,9 +91,6 @@ class Main extends Component {
                 break;
             case "/vacation" :
                 path = "/search/vacation";
-                break;
-            case "/international" :
-                path = "/search/international";
                 break;
             default :
                 path = "/";

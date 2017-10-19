@@ -166,11 +166,6 @@ class Content extends Component {
                     </div>
                 );
                 break;
-            case "international" :
-                content = (
-                    <div className={ st("custom-detail") } dangerouslySetInnerHTML={{ __html : item.arContent.replace(/\n/g, "<br>") }}></div>
-                );
-                break;
             default :
                 break;
         }
