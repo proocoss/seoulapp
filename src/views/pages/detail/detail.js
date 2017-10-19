@@ -110,12 +110,10 @@ class Detail extends Component {
     }
 
     render() {
+
         return (
             <div>
-                {
-                    this.props.detailData &&
-                        <CommonHeader title={ this.getTitle() } type="detail" backHistory={ this.backHistory } />
-                }
+                <CommonHeader title={ decodeURIComponent(this.props.location.query.t) } type="detail" backHistory={ this.backHistory } />
                 {
                     this.props.detailData &&
                         React.cloneElement(

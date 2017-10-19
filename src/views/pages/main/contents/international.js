@@ -78,7 +78,15 @@ class International extends Component {
 
         return items.map((_item, _idx) => {
             return (
-                <Link className={ st("link-wrap") } to={"/detail/international/" + _idx} key={_idx}>
+                <Link className={ st("link-wrap") } 
+                    to={
+                        {
+                            pathname : "/detail/international/" + _idx,
+                            query : {
+                                t : encodeURIComponent(_item.arName)
+                            }
+                        }
+                    } key={_idx}>
                     <ul className={ st("list-box") }>
                         <li className={ st("year") }>{_item.arYear}</li>
                         <li className={ st("title") }>{_item.arName}</li>

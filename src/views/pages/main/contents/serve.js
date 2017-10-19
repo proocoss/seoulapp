@@ -124,7 +124,15 @@ class Serve extends Component {
             }));
 
             return (
-                <Link className={ st("link-wrap") } to={"/detail/serve/" + _item.key1} key={_idx}>
+                <Link className={ st("link-wrap") } 
+                    to={
+                        { 
+                            pathname : "/detail/serve/" + _item.key1, 
+                            query : { 
+                                t : encodeURIComponent(_item.pgmNm) 
+                            } 
+                        }
+                    } key={_idx}>
                     <ul className={ st("list-box") }>
                         <li className={ st("title") }>{_item.pgmNm}</li>
                         <ul className={ st("info-wrap") }>    
