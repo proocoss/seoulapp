@@ -4,7 +4,8 @@
     top: 0px;
     background-color: #ffffff;
 
-    .header-box {
+    // list page header. back icon, title (left align), search icon
+    .list {
         padding: 16px 0px;
         border-bottom: 1px solid #e5e5e5;
 
@@ -52,13 +53,83 @@
         }
     }
 
+    // detail page header. not exist search icon
     .detail {
+        padding: 16px 0px;
+        border-bottom: 1px solid #e5e5e5;
+
+        .item {
+
+            .icon-img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .menu-icon {
+            margin-left: 10px;
+            float: left;
+        }
+
         .header-title {
+            margin-top: 4px;
+            margin-left: 15px;
             width: 85%;
+            float: left;
+            font-size: 16px;
+            font-weight: bold;
+            color: #444444;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-wrap: normal;
+            overflow: hidden;
             
             @media (max-width: 360px) {
                 width: 80%;
             }
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+    }
+
+    // search page header. left close icon, title center
+    .search {
+        padding: 29.5px 0px;
+        border-bottom: 1px solid #e5e5e5;
+
+        .item {
+            position: absolute;
+
+            .icon-img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .menu-icon {
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 10px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .header-title {
+            padding: 22px 22px 22px 0px;
+            top: 0px;
+            right: 0;
+            bottom: 0;
+            left: 35px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #444444;
+            text-align: center;
         }
     }
 }

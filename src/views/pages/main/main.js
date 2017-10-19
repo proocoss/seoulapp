@@ -17,6 +17,7 @@ class Main extends Component {
 
         this.getTitle = this.getTitle.bind(this);
         this.backHistory = this.backHistory.bind(this);
+        this.goSearch = this.goSearch.bind(this);
     }
 
     componentWillMount() {
@@ -78,13 +79,38 @@ class Main extends Component {
         this.props.router.goBack();
     }
 
+    goSearch() {
+        let path;
+
+        switch(this.page) {
+            case "/activity" :
+                path = "/search/activity";
+                break;
+            case "/serve" :
+                path = "/search/serve";
+                break;
+            case "/international" :
+                path = "/search/international";
+                break;
+            default :
+                path = "/";
+                break;
+        }
+
+        this.props.router.push(path);
+    }
+
     render() {
         return (
             <div>
                 {
-                    this.page === "/" ? <MainHeader /> : <CommonHeader title={ this.getTitle() } backHistory={ this.backHistory } />
+                    this.page === "/" 
+                        ? 
+                        <MainHeader /> 
+                        : 
+                        <CommonHeader title={ this.getTitle() } type="list" backHistory={ this.backHistory } goSearch={ this.goSearch } />
                 }
-                {this.props.children}
+                { this.props.children }
                 {
                     this.props.isLoading && <LoadingType1 />
                 }

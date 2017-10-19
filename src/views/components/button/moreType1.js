@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import moreType1 from "./moreType1.css";
 
 // image
-import moreIcon from "assets/images/more-icon.png";
+import btnMoreIcon1 from "assets/images/btn-more-icon-1.png";
 
 const st = classNames.bind(moreType1);
 
@@ -25,7 +25,7 @@ class MoreType1 extends Component {
             <div 
                 className={ st("more-btn-wrap") }
                 onClick={this.props.requestList}>
-                더보기 <img className={ st("more-icon") } src={moreIcon} alt="more-icon" />
+                더보기 <img className={ st("more-icon") } src={btnMoreIcon1} alt="more-icon" />
             </div>
         );
     }

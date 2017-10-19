@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk';
 
 // user modules
 import Reducer from "modules/index";
-import {Main, Home, Activity, International, Serve, Detail, Content} from "views/pages";
+import {Main, Home, Activity, International, Serve, Detail, DetailContent, Search, SearchContent} from "views/pages";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -31,7 +31,10 @@ class App extends Component {
                         <Route path="international" component={International} />
                     </Route>
                     <Route path="/detail" component={Detail}>
-                        <Route path=":page/:id" component={Content} />
+                        <Route path=":page/:id" component={DetailContent} />
+                    </Route>
+                    <Route path="/search" component={Search}>
+                        <Route path=":page" component={SearchContent} />
                     </Route>
                 </Router>
             </Provider>

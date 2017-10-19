@@ -7,4 +7,8 @@ export {default as International} from "./main/contents/international";
 
 // detail
 export {default as Detail} from "./detail/detail";
-export {default as Content} from "./detail/content";
+export {default as DetailContent} from "./detail/content";
+
+// search
+export {default as Search} from "./search/search";
+export {default as SearchContent} from "./search/content";
