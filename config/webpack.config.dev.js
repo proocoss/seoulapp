@@ -158,8 +158,10 @@ module.exports = {
           // "style" loader turns CSS into JS modules that inject <style> tags.
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
+          // [jh.lee] global css config. except node_modules.
           {
             test: /\.css$/,
+            exclude: /node_modules/, // [jh.lee] exclude node_modules folder
             use: [
               require.resolve('style-loader'),
               {
@@ -169,6 +171,40 @@ module.exports = {
                   // [jh.lee] css module setting
                   modules: true,
                   localIdentName: '[local]--[hash:base64:5]',
+                },
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+            ],
+          },
+          // [jh.lee] node_modules css config. only bootstrap and reset css config. not css module config.
+          {
+            test: /\.css$/,
+            include: /node_modules/, // [jh.lee] only node_modules folder
+            use: [
+              require.resolve('style-loader'),
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1
                 },
               },
               {
