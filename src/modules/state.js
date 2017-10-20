@@ -36,7 +36,7 @@ const initData = {
 const requestData = (_obj, _dispatch) => {
     let result;
     let CancelToken = axios.CancelToken;
-    var source = CancelToken.source();
+    let source = CancelToken.source();
     let type = _obj.type;
     let key = _obj.key;
     let page = _obj.page ? _obj.page * 10 : 10;
