@@ -5,14 +5,16 @@ import React, {Component} from "react";
 import {CommonHeader} from "views/components";
 
 class Search extends Component {
-
     /**
      * Life cycle func
     */
     constructor(props) {
         console.log("constructor Search");
         super(props);
+        let params = this.props.params;
 
+        // parent page name
+        this.page = params.page;
         this.backHistory = this.backHistory.bind(this);
     }
 
