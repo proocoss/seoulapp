@@ -26,11 +26,6 @@ exports.handler = (_event, _context, _callback) => {
         case "getVacationProgrmList" :
             options.url = options.url + "YouthActivInfoVacationSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
             break;
-        case "getYngbgsIntrlExchgProgrmList" :
-            // &status=1
-            year = new Date().getFullYear();
-            options.url = options.url + "IntrlExchgProgrmInfoSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&year=" + year + "&pageNo=" + pageNo; 
-            break;
     }
 
     request(options, (_reqError, _response, _body) => {
@@ -98,20 +93,6 @@ exports.handler = (_event, _context, _callback) => {
                                         sdate : _item.sdate ? _item.sdate[0] : "",
                                         edate : _item.edate ? _item.edate[0] : "",
                                         certYn : _item.certYn ? _item.certYn[0] : ""
-                                    }
-                                );
-                            });
-                            break;
-                        case "getYngbgsIntrlExchgProgrmList" :
-                            item.map((_item, _idx) => {
-                                result.data.push(
-                                    {
-                                        arName : _item.arName ? _item.arName[0] : "",
-                                        arStartDate : _item.arStartDate ? _item.arStartDate[0] : "",
-                                        arEndDate : _item.arEndDate ? _item.arEndDate[0] : "",
-                                        arContent : _item.arContent ? _item.arContent[0] : "",
-                                        arYear : _item.arYear ? _item.arYear[0] : "",
-                                        arStatus : _item.arStatus ? _item.arStatus[0] : ""
                                     }
                                 );
                             });
