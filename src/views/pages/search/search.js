@@ -3,6 +3,7 @@ import React, {Component} from "react";
 
 // user modules
 import {CommonHeader} from "views/components";
+import {LoadingType1} from "views/components";
 
 class Search extends Component {
     /**
@@ -59,6 +60,12 @@ class Search extends Component {
         return (
             <div>
                 <CommonHeader title="상세검색" type="search" backHistory={ this.backHistory } />
+                {
+                    React.cloneElement(this.props.children, { page : this.page })
+                }
+                {
+                    this.props.isLoading && <LoadingType1 />
+                }
             </div>
         );
     }

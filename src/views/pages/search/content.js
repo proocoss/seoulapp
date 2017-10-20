@@ -1,5 +1,13 @@
 // npm modules
 import React, {Component} from "react";
+import FormGroup from 'react-bootstrap/lib/FormGroup';
+import FormControl from 'react-bootstrap/lib/FormControl';
+import classNames from 'classnames/bind';
+
+// style
+import content from "./content.css";
+
+const st = classNames.bind(content);
 
 class Content extends Component {
     constructor(props) {
@@ -38,7 +46,12 @@ class Content extends Component {
 
     render() {
         return (
-            <section>
+            <section className={ st("total-search-wrap") }>
+                <form>
+                    <FormGroup bsSize="large">
+                      <FormControl type="text" placeholder="프로그램 명" />
+                    </FormGroup>
+                </form>
             </section>
         );
     }

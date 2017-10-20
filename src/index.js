@@ -11,8 +11,10 @@ import registerServiceWorker from "registerServiceWorker";
 // user modules
 import App from "app";
 
-// style
-import "../node_modules/reset-css/reset.css";
+// style modules
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+import "reset-css/reset.css";
 
 // firebase.auth().getRedirectResult().then(function(result) {
 //   if (result.credential) {
