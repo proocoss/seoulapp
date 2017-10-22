@@ -1,3 +1,47 @@
 .total-search-wrap {
 	margin-top: 60px;
+
+    .content-wrap {
+        padding: 15px;
+
+        input {
+            font-size: 12px;
+        }
+
+        .input-pgm {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
+
+            input {
+                padding: 10px 40px 10px 16px;
+                height: 40px;
+                border: 1px solid #81878e;
+                border-radius: 0px;
+                box-shadow: none;
+                background-image: url(assets/images/search-icon.png);
+                background-repeat: no-repeat;
+                background-size: 24px 24px;
+                background-position: right 10px top 5px;
+            }
+        }
+
+        .select-list {
+
+            .title {
+                margin-bottom: 10px;
+                font-size: 12px;
+                font-weight: bold;
+                color: #444444;
+            }
+
+            select {
+                font-size: 12px;
+                color: #444444;
+                height: 32px;
+                border: 1px solid #e5e5e5;
+                border-radius: 0px;
+                box-shadow: none;
+            }
+        }
+    }
 }

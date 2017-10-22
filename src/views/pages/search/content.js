@@ -2,6 +2,7 @@
 import React, {Component} from "react";
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
+import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import classNames from 'classnames/bind';
 
 // style
@@ -13,6 +14,10 @@ class Content extends Component {
     constructor(props) {
         console.log("constructor Content");
         super(props);
+
+        this.state = {
+            isDetailOption : false
+        };
     }
 
     componentWillMount() {
@@ -47,10 +52,28 @@ class Content extends Component {
     render() {
         return (
             <section className={ st("total-search-wrap") }>
-                <form>
-                    <FormGroup bsSize="large">
+                <form className={ st("content-wrap") }>
+                    <FormGroup className={ st("input-pgm") } bsSize="large">
                       <FormControl type="text" placeholder="프로그램 명" />
                     </FormGroup>
+                    <FormGroup className={ st("select-list") } controlId="city">
+                        <ControlLabel className={ st("title") }>상세지역</ControlLabel>
+                        <FormControl componentClass="select" required placeholder="지역을 선택해주세요.">
+                            <option value="" hidden>지역을 선택해주세요.</option>
+                            <option value="select">select</option>
+                            <option value="other">...</option>
+                        </FormControl>
+                    </FormGroup>
+                    {
+                        this.state.isDetailOption && 
+                        <FormGroup className={ st("select-list") } controlId="city-detail">
+                            <FormControl componentClass="select" required placeholder="상세지역을 선택해주세요.">
+                                <option value="" hidden>상세지역을 선택해주세요.</option>
+                                <option value="select">select</option>
+                                <option value="other">...</option>
+                            </FormControl>
+                        </FormGroup>
+                    }
                 </form>
             </section>
         );
