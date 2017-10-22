@@ -7,6 +7,7 @@ import mainHeader from "./mainHeader.css";
 
 // image
 import menuIcon from "assets/images/menu-icon.png";
+import logoIcon from "assets/images/logo-icon.png";
 
 const st = classNames.bind(mainHeader);
 
@@ -32,7 +33,7 @@ class MainHeader extends Component {
                 <nav>
                     <ul className={ st("header-wrap") }>
                         <li className={ st("item", "menu-icon") }><img className={ st("icon-img") } src={ menuIcon } alt="menu-icon" /></li>
-                        <li className={ st("item", "header-title") }>고고유스</li>
+                        <li className={ st("item", "header-title") }><img className={ st("logo-img") } src={ logoIcon } alt="title-icon" /></li>
                         {/*
                         <li>
                             <div onClick={this.testFunc}>페이스북 로그인</div>

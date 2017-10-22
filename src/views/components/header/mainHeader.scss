@@ -17,11 +17,16 @@
     }
 
     .header-title {
-        top: 22px;
+        top: 15px;
         width: 100%;
         font-size: 18px;
         font-weight: bold;
         color: #444444;
         text-align: center;
+
+        .logo-img {
+            width: 140px;
+            height: auto;
+        }
     }
 }
