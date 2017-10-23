@@ -5,6 +5,9 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import classNames from 'classnames/bind';
 
+// json
+import locale from "assets/locale/localeKo.json";
+
 // style
 import content from "./content.css";
 
@@ -16,8 +19,13 @@ class Content extends Component {
         super(props);
 
         this.state = {
+            selectCity : 0,
             isDetailOption : false
         };
+
+        this.selectCity = this.selectCity.bind(this);
+        this.makeCityList = this.makeCityList.bind(this);
+        this.makeDetailList = this.makeDetailList.bind(this);
     }
 
     componentWillMount() {
@@ -49,6 +57,58 @@ class Content extends Component {
         console.log("componentWillUnmount Content");
     }
 
+    /**
+     * User func
+     */
+    selectCity(_event) {
+        this.setState({
+            selectCity : _event.target.value,
+            isDetailOption : true
+        });
+    }
+
+    makeCityList() {
+        let items = locale.city;
+
+        return items.map((_item, _idx) => {
+            return (
+                <option value={_idx} key={_idx}>{_item.text}</option>
+            );
+        });
+    }
+
+    // makeCityList() {
+    //     let items = locale.city;
+    //     let reault = [];
+
+    //     result.push(items.map((_item, _idx) => {
+    //         return (
+    //             <option value={_idx} key={_idx}>{_item.text}</option>
+    //         );
+    //     }));
+
+    //     return (
+    //         <FormGroup className={ st("select-list") } controlId="city">
+    //             <ControlLabel className={ st("title") }>상세지역</ControlLabel>
+    //             <FormControl componentClass="select" onChange={this.selectCity} required placeholder="지역을 선택해주세요.">
+    //                 <option value="" hidden>지역을 선택해주세요.</option>
+    //                 { result }
+    //             </FormControl>
+    //         </FormGroup>
+    //     );
+    // }
+
+    makeDetailList() {
+        console.log("tes");
+        let items = locale.city[this.state.selectCity].detail;
+
+        return items.map((_item, _idx) => {
+            return (
+                <option value={_idx} key={_idx}>{_item}</option>
+            );
+        });
+    }
+
     render() {
         return (
             <section className={ st("total-search-wrap") }>
@@ -58,10 +118,9 @@ class Content extends Component {
                     </FormGroup>
                     <FormGroup className={ st("select-list") } controlId="city">
                         <ControlLabel className={ st("title") }>상세지역</ControlLabel>
-                        <FormControl componentClass="select" required placeholder="지역을 선택해주세요.">
+                        <FormControl componentClass="select" onChange={this.selectCity} required placeholder="지역을 선택해주세요.">
                             <option value="" hidden>지역을 선택해주세요.</option>
-                            <option value="select">select</option>
-                            <option value="other">...</option>
+                            { this.makeCityList() }
                         </FormControl>
                     </FormGroup>
                     {
@@ -69,8 +128,7 @@ class Content extends Component {
                         <FormGroup className={ st("select-list") } controlId="city-detail">
                             <FormControl componentClass="select" required placeholder="상세지역을 선택해주세요.">
                                 <option value="" hidden>상세지역을 선택해주세요.</option>
-                                <option value="select">select</option>
-                                <option value="other">...</option>
+                                { this.makeDetailList() }
                             </FormControl>
                         </FormGroup>
                     }
