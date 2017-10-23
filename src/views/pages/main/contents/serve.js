@@ -173,7 +173,7 @@ class Serve extends Component {
                 {
                     this.props.listData
                         ?
-                        <MoreType1 type="main-btn-type" requestList={this.requestList} />
+                        <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :
                         ""
                 }

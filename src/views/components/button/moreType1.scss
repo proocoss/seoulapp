@@ -15,5 +15,17 @@
 
 // search view btn
 .search-btn-wrap {
+    position: fixed;
+    bottom: 0;
+    padding: 16px 0px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    background-color: #50d2c2;
 
+    .more-icon {
+        display: none;
+    }
 }

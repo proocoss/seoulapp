@@ -76,7 +76,7 @@ class Search extends Component {
                 {
                     React.cloneElement(this.props.children, { page : this.page })
                 }
-                <MoreType1 type="search-btn-wrap" requestList={this.requestList} />
+                <MoreType1 type="search-btn-wrap" value="선택 완료" requestList={this.requestList} />
                 {
                     this.props.isLoading && <LoadingType1 />
                 }

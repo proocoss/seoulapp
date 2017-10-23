@@ -25,7 +25,7 @@ class MoreType1 extends Component {
             <div 
                 className={ st(this.props.type) }
                 onClick={this.props.requestList}>
-                더보기 <img className={ st("more-icon") } src={btnMoreIcon1} alt="more-icon" />
+                {this.props.value} <img className={ st("more-icon") } src={btnMoreIcon1} alt="more-icon" />
             </div>
         );
     }
