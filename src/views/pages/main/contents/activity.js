@@ -171,7 +171,7 @@ class Activity extends Component {
                 {
                     this.props.listData
                         ?
-                        <MoreType1 requestList={this.requestList} />
+                        <MoreType1 type="main-btn-type" requestList={this.requestList} />
                         :
                         ""
                 }

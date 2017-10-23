@@ -23,7 +23,7 @@ class MoreType1 extends Component {
     render() {
         return (
             <div 
-                className={ st("more-btn-wrap") }
+                className={ st(this.props.type) }
                 onClick={this.props.requestList}>
                 더보기 <img className={ st("more-icon") } src={btnMoreIcon1} alt="more-icon" />
             </div>

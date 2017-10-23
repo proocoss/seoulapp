@@ -4,6 +4,7 @@ import React, {Component} from "react";
 // user modules
 import {CommonHeader} from "views/components";
 import {LoadingType1} from "views/components";
+import {MoreType1} from "views/components";
 
 class Search extends Component {
     /**
@@ -16,6 +17,7 @@ class Search extends Component {
 
         // parent page name
         this.page = params.page;
+        this.requestList = this.requestList.bind(this);
         this.backHistory = this.backHistory.bind(this);
     }
 
@@ -51,6 +53,17 @@ class Search extends Component {
     /**
      * User func
      */
+    requestList() {
+        // let props = this.props;
+
+        // props.setListData(
+        //     {
+        //         type : SET_ACTIVITY_LIST,
+        //         page : props.page
+        //     }
+        // );
+    }
+
     backHistory() {
         this.props.router.goBack();
     }
@@ -63,6 +76,7 @@ class Search extends Component {
                 {
                     React.cloneElement(this.props.children, { page : this.page })
                 }
+                <MoreType1 type="search-btn-wrap" requestList={this.requestList} />
                 {
                     this.props.isLoading && <LoadingType1 />
                 }
