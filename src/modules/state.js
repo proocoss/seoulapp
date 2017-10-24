@@ -57,7 +57,7 @@ const requestData = (_obj, _dispatch) => {
             );
             break;
         case SET_VACATION_LIST :
-            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getVacationProgrmList/" + page,
+            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getSingoProgrmList/" + page,
                 {
                     cancelToken: source.token
                 }
@@ -78,7 +78,7 @@ const requestData = (_obj, _dispatch) => {
             );
             break;
         case SET_VACATION_DETAIL :
-            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/detail/getVacationProgrmInfo/" + key,
+            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/detail/getSingoProgrmNewInfo/" + key,
                 {
                     cancelToken: source.token
                 }

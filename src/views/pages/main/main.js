@@ -59,13 +59,13 @@ class Main extends Component {
 
         switch(this.page) {
             case "/activity" :
-                title = "청소년 인증 프로그램";
+                title = "청소년 인증활동 프로그램";
                 break;
             case "/serve" :
                 title = "청소년 자원봉사 프로그램";
                 break;
             case "/vacation" :
-                title = "청소년 방학활동 프로그램";
+                title = "청소년 신고활동 프로그램";
                 break;
             default :
                 title = "";

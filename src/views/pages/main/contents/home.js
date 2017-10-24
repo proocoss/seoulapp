@@ -68,8 +68,16 @@ class Home extends Component {
                     <li>
                         <Link className={ st("activity-bg") } to="/activity">
                             <div className={ st("info-box") }>
-                                <span className={ st("title") }>청소년 인증 프로그램</span>
+                                <span className={ st("title") }>청소년 인증활동 프로그램</span>
                                 <img className={ st("act-img") } src={mainIconActivity} alt="main-icon-activity" />
+                            </div>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className={st("international-bg")} to="/vacation">
+                            <div className={st("info-box")}>
+                                <span className={st("title")}>청소년 신고활동 프로그램</span>
+                                <img className={ st("int-img") } src={mainIconVacation} alt="main-icon-vacation" />
                             </div>
                         </Link>
                     </li>
@@ -78,14 +86,6 @@ class Home extends Component {
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 자원봉사 프로그램</span>
                                 <img className={ st("ser-img") } src={mainIconServe} alt="main-icon-serve" />
-                            </div>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={st("international-bg")} to="/vacation">
-                            <div className={st("info-box")}>
-                                <span className={st("title")}>청소년 방학활동 프로그램</span>
-                                <img className={ st("int-img") } src={mainIconVacation} alt="main-icon-vacation" />
                             </div>
                         </Link>
                     </li>
