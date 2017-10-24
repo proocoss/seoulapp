@@ -51,6 +51,7 @@ class Content extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         console.log("componentDidUpdate Content");
+        document.getElementById("city-detail").value = "";
     }
 
     componentWillUnmount() {
@@ -77,29 +78,7 @@ class Content extends Component {
         });
     }
 
-    // makeCityList() {
-    //     let items = locale.city;
-    //     let reault = [];
-
-    //     result.push(items.map((_item, _idx) => {
-    //         return (
-    //             <option value={_idx} key={_idx}>{_item.text}</option>
-    //         );
-    //     }));
-
-    //     return (
-    //         <FormGroup className={ st("select-list") } controlId="city">
-    //             <ControlLabel className={ st("title") }>상세지역</ControlLabel>
-    //             <FormControl componentClass="select" onChange={this.selectCity} required placeholder="지역을 선택해주세요.">
-    //                 <option value="" hidden>지역을 선택해주세요.</option>
-    //                 { result }
-    //             </FormControl>
-    //         </FormGroup>
-    //     );
-    // }
-
     makeDetailList() {
-        console.log("tes");
         let items = locale.city[this.state.selectCity].detail;
 
         return items.map((_item, _idx) => {
