@@ -17,22 +17,33 @@ exports.handler = (_event, _context, _callback) => {
     
     _context.callbackWaitsForEmptyEventLoop = false;
 
+    if (query) {
+        query = decodeURIComponent(query);
+        query = query.split("|");
+        query = "&pgm=" + encodeURIComponent(query[0]) + "&sido=" + encodeURIComponent(query[1]) + "&sigungu=" + encodeURIComponent(query[2]);
+    }
+
     switch(apiPath) {
         case "getCertiProgrmList" :
             if (query) {
-                query = decodeURIComponent(query);
-                query = query.split("|");
-                query = "&pgm=" + encodeURIComponent(query[0]) + "&sido=" + encodeURIComponent(query[1]) + "&sigungu=" + encodeURIComponent(query[2]);
                 options.url = options.url + "YouthActivInfoCertiSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + query;
             } else {
                 options.url = options.url + "YouthActivInfoCertiSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
             }
             break;
         case "getVolProgrmList" :
-            options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            if (query) {
+                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + query;
+            } else {
+                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            }
             break;
         case "getSingoProgrmList" :
-            options.url = options.url + "YouthActivInfoSingoSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            if (query) {
+                options.url = options.url + "YouthActivInfoSingoSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + query;
+            } else {
+                options.url = options.url + "YouthActivInfoSingoSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            }
             break;
     }
 
