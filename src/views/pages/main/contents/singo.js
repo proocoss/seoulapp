@@ -11,7 +11,7 @@ import singo from "./singo.css";
 import dateIcon from "assets/images/date-icon.png";
 
 // user modules
-import {SET_SINGO_LIST, setListData} from "modules/state";
+import {SET_SINGO_LIST, SET_SINGO_SEARCH, setListData} from "modules/state";
 import {MoreType1} from "views/components";
 
 const st = classNames.bind(singo);
@@ -35,15 +35,25 @@ class Singo extends Component {
 
     componentDidMount() {
         console.log("componentDidMount Singo");
-        let props = this.props; 
+        let props = this.props;
         let listData = props.listData;
-        
-        if (!listData) {
+        let searchQuery = props.location.state;
+
+        if (searchQuery) {
             props.setListData(
                 {
-                    type : SET_SINGO_LIST
+                    type : SET_SINGO_LIST,
+                    query : searchQuery
                 }
             );
+        } else {
+            if (!listData) {
+                props.setListData(
+                    {
+                        type : SET_SINGO_LIST
+                    }
+                );
+            }
         }
     }
 
@@ -76,7 +86,7 @@ class Singo extends Component {
      * User func
      */
     makeList() {
-        let items = this.props.listData.data;
+        let items = this.props.location.state ? this.props.searchData.data : this.props.listData.data;
 
         return items.map((_item, _idx) => {
             let splitItem = _item.target.split(",");
@@ -134,7 +144,7 @@ class Singo extends Component {
                             }
                         } key={_idx}>
                     <ul className={ st("list-box") }>
-                        <li className={ st("title") }>{_item.pgmNm}</li>
+                        <li className={ st("title") }>{_item.pgmNm.replace(/&quot/g,"\"")}</li>
                         <ul className={ st("info-wrap") }>    
                             <li className={ st("item") }>{_item.organNm}</li>
                             <li className={ st("item") }>참가비 <span className={ st("price") }>{_item.price}</span></li>
@@ -151,27 +161,36 @@ class Singo extends Component {
 
     requestList() {
         let props = this.props;
-
-        props.setListData(
-            {
-                type : SET_SINGO_LIST,
-                page : props.page
-            }
-        );
+        let searchQuery = props.location.state;
+        
+        if (searchQuery) {
+            props.setListData(
+                {
+                    type : SET_SINGO_SEARCH,
+                    query : searchQuery,
+                    searchPage : props.searchPage
+                }
+            );
+        } else {
+            props.setListData(
+                {
+                    type : SET_SINGO_LIST,
+                    page : props.page
+                }
+            );
+        }
     }
 
     render() {
+        let data = this.props.location.state ? this.props.searchData : this.props.listData;
+
         return(
             <section className={ st("list-wrap") }>
                 {
-                    this.props.listData
-                        ?
-                        this.makeList()
-                        :
-                        ""
+                    data ? this.makeList() : ""
                 }
                 {
-                    this.props.listData
+                    data
                         ?
                         <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :
@@ -186,6 +205,8 @@ const mapStateToProps = (_state, _ownProps) => {
     return {
         cancelReq : _state.state.cancelReq,
         page : _state.singo.page,
+        searchPage : _state.singo.searchPage,
+        searchData : _state.singo.searchData,
         listData : _state.singo.listData,
         errorMessage : _state.singo.errorMessage
     };

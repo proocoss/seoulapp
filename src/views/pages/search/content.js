@@ -92,7 +92,7 @@ class Content extends Component {
         return (
             <section className={ st("total-search-wrap") }>
                 <form className={ st("content-wrap") }>
-                    <FormGroup className={ st("input-pgm") } bsSize="large">
+                    <FormGroup controlId="pgmNm" className={ st("input-pgm") } bsSize="large">
                       <FormControl type="text" placeholder="프로그램 명" />
                     </FormGroup>
                     <FormGroup className={ st("select-list") } controlId="city">

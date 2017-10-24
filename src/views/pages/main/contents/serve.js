@@ -12,7 +12,7 @@ import dateIcon from "assets/images/date-icon.png";
 import {MoreType1} from "views/components";
 
 // user modules
-import {SET_SERVE_LIST, setListData} from "modules/state";
+import {SET_SERVE_LIST, SET_SERVE_SEARCH, setListData} from "modules/state";
 
 const st = classNames.bind(serve);
 
@@ -37,13 +37,23 @@ class Serve extends Component {
         console.log("componentDidMount Serve");
         let props = this.props;
         let listData = props.listData;
+        let searchQuery = props.location.state;
 
-        if (!listData) {
+        if (searchQuery) {
             props.setListData(
                 {
-                    type : SET_SERVE_LIST
+                    type : SET_SERVE_LIST,
+                    query : searchQuery
                 }
             );
+        } else {
+            if (!listData) {
+                props.setListData(
+                    {
+                        type : SET_SERVE_LIST
+                    }
+                );
+            }
         }
     }
 
@@ -77,7 +87,7 @@ class Serve extends Component {
      * User func
      */
     makeList() {
-        let items = this.props.listData.data;
+        let items = this.props.location.state ? this.props.searchData.data : this.props.listData.data;
 
         return items.map((_item, _idx) => {
             let splitItem = _item.target.split(",");
@@ -134,7 +144,7 @@ class Serve extends Component {
                         }
                     } key={_idx}>
                     <ul className={ st("list-box") }>
-                        <li className={ st("title") }>{_item.pgmNm}</li>
+                        <li className={ st("title") }>{_item.pgmNm.replace(/&quot/g,"\"")}</li>
                         <ul className={ st("info-wrap") }>    
                             <li className={ st("item") }>{_item.organNm}</li>
                             <li className={ st("item") }>참가비 <span className={ st("price") }>{_item.price}</span></li>
@@ -151,27 +161,36 @@ class Serve extends Component {
 
     requestList() {
         let props = this.props;
-
-        props.setListData(
-            {
-                type : SET_SERVE_LIST,
-                page : props.page
-            }
-        );
+        let searchQuery = props.location.state;
+        
+        if (searchQuery) {
+            props.setListData(
+                {
+                    type : SET_SERVE_SEARCH,
+                    query : searchQuery,
+                    searchPage : props.searchPage
+                }
+            );
+        } else {
+            props.setListData(
+                {
+                    type : SET_SERVE_LIST,
+                    page : props.page
+                }
+            );
+        }
     }
 
     render() {
+        let data = this.props.location.state ? this.props.searchData : this.props.listData;
+
         return(
             <section className={ st("list-wrap") }>
                 {
-                    this.props.listData
-                        ?
-                        this.makeList()
-                        :
-                        ""
+                    data ? this.makeList() : ""
                 }
                 {
-                    this.props.listData
+                    data
                         ?
                         <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :
@@ -186,6 +205,8 @@ const mapStateToProps = (_state, _ownProps) => {
     return {
         cancelReq : _state.state.cancelReq,
         page : _state.serve.page,
+        searchPage : _state.serve.searchPage,
+        searchData : _state.serve.searchData,
         listData : _state.serve.listData,
         errorMessage : _state.serve.errorMessage
     };

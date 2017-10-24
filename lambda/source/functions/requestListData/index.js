@@ -7,6 +7,7 @@ exports.handler = (_event, _context, _callback) => {
     let path = _event.params.path;
     let apiPath = path.method;
     let pageNo = path.count / 10;
+    let query = path.query;
     let year;
     let options = {
         url : url,
@@ -18,7 +19,14 @@ exports.handler = (_event, _context, _callback) => {
 
     switch(apiPath) {
         case "getCertiProgrmList" :
-            options.url = options.url + "YouthActivInfoCertiSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            if (query) {
+                query = decodeURIComponent(query);
+                query = query.split("|");
+                query = "&pgm=" + encodeURIComponent(query[0]) + "&sido=" + encodeURIComponent(query[1]) + "&sigungu=" + encodeURIComponent(query[2]);
+                options.url = options.url + "YouthActivInfoCertiSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + query;
+            } else {
+                options.url = options.url + "YouthActivInfoCertiSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+            }
             break;
         case "getVolProgrmList" :
             options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 

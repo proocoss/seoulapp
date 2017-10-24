@@ -12,19 +12,25 @@ const initData = {
     },
     activity : {
         page : 1,
+        searchPage : 1,
         listData : undefined,
+        searchData : undefined,
         detailData : undefined,
         errorMessage : ""
     },
     serve : {
         page : 1,
+        searchPage : 1,
         listData : undefined,
+        searchData : undefined,
         detailData : undefined,
         errorMessage : ""
     },
     singo : {
         page : 1,
+        searchPage : 1,
         listData : undefined,
+        searchData : undefined,
         detailData : undefined,
         errorMessage : ""
     }
@@ -40,10 +46,21 @@ const requestData = (_obj, _dispatch) => {
     let type = _obj.type;
     let key = _obj.key;
     let page = _obj.page ? _obj.page * 10 : 10;
+    let searchPage = _obj.searchPage ? _obj.searchPage * 10 : 10;
+    let query = _obj.query;
+    let queryString = "";
 
     switch(type) {
         case SET_ACTIVITY_LIST :
             result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getCertiProgrmList/" + page,
+                {
+                    cancelToken: source.token
+                }
+            );
+            break;
+        case SET_ACTIVITY_SEARCH :
+            queryString = query.p + "|" + query.c + "|" + query.d;
+            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getCertiProgrmList/" + searchPage + "/" + queryString,
                 {
                     cancelToken: source.token
                 }
@@ -103,6 +120,9 @@ export const SET_PAGE_TYPE = "app/modules/state/SET_PAGE_TYPE";
 export const SET_ACTIVITY_LIST = "app/modules/state/SET_ACTIVITY_LIST";
 export const SET_SERVE_LIST = "app/modules/state/SET_SERVE_LIST";
 export const SET_SINGO_LIST = "app/modules/state/SET_SINGO_LIST";
+export const SET_ACTIVITY_SEARCH = "app/modules/state/SET_ACTIVITY_SEARCH";
+export const SET_SERVE_SEARCH = "app/modules/state/SET_SERVE_SEARCH";
+export const SET_SINGO_SEARCH = "app/modules/state/SET_SINGO_SEARCH";
 
 // Detail
 export const SET_ACTIVITY_DETAIL = "app/modules/state/SET_ACTIVITY_DETAIL";
@@ -153,6 +173,42 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
                 }
             );
             break;
+        case SET_ACTIVITY_SEARCH :
+            // Init searchData before call http
+            currentPage = _getState().activity.searchPage;
+            currentListData = _getState().activity.searchData;
+            _dispatch(
+                {
+                    type : type,
+                    searchData : undefined,
+                    errorMessage : ""
+                }
+            );
+            break;
+        case SET_SERVE_SEARCH :
+            // Init searchData before call http
+            currentPage = _getState().serve.searchPage;
+            currentListData = _getState().activity.searchData;
+            _dispatch(
+                {
+                    type : type,
+                    searchData : undefined,
+                    errorMessage : ""
+                }
+            );
+            break;
+        case SET_SINGO_SEARCH :
+            // Init searchData before call http
+            currentPage = _getState().singo.searchPage;
+            currentListData = _getState().activity.searchData;
+            _dispatch(
+                {
+                    type : type,
+                    searchData : undefined,
+                    errorMessage : ""
+                }
+            );
+            break;
         default :
             break;
     }
@@ -182,6 +238,18 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
                                 errorMessage : _response.errorMessage
                             }
                         );   
+                        break;
+                    case SET_ACTIVITY_SEARCH :
+                    case SET_SERVE_SEARCH :
+                    case SET_SINGO_SEARCH :
+                        // Init searchData before call http
+                        _dispatch(
+                            {
+                                type : type,
+                                searchData : undefined,
+                                errorMessage : ""
+                            }
+                        );
                         break;
                     default :
                         break;
@@ -221,6 +289,18 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
                             {
                                 type : type,
                                 detailData : _response.data,
+                                errorMessage : ""
+                            } 
+                        );
+                        break;
+                    case SET_ACTIVITY_SEARCH :
+                    case SET_SERVE_SEARCH :
+                    case SET_SINGO_SEARCH :
+                        _dispatch(
+                            {
+                                type : type,
+                                searchPage : ++currentPage,
+                                searchData : _response.data,
                                 errorMessage : ""
                             } 
                         );
@@ -282,6 +362,12 @@ const activity = (_state = initData.activity, _action) => {
                 listData : _action.listData,
                 errorMessage : _action.errorMessage
             });
+        case SET_ACTIVITY_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                searchData : _action.searchData,
+                errorMessage : _action.errorMessage
+            });
         case SET_ACTIVITY_DETAIL :
             return Object.assign({}, _state, {
                 detailData : _action.detailData,
@@ -299,7 +385,13 @@ const serve = (_state = initData.serve, _action) => {
                 page : _action.page,
                 listData : _action.listData,
                 errorMessage : _action.errorMessage
-            }); 
+            });
+        case SET_SERVE_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                listData : _action.searchData,
+                errorMessage : _action.errorMessage
+            });
         case SET_SERVE_DETAIL :
             return Object.assign({}, _state, {
                 detailData : _action.detailData,
@@ -316,6 +408,12 @@ const singo = (_state = initData.singo, _action) => {
             return Object.assign({}, _state, {
                 page : _action.page,
                 listData : _action.listData,
+                errorMessage : _action.errorMessage
+            });
+        case SET_SINGO_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                listData : _action.searchData,
                 errorMessage : _action.errorMessage
             });
         case SET_SINGO_DETAIL :

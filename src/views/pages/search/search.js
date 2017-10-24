@@ -54,14 +54,25 @@ class Search extends Component {
      * User func
      */
     requestList() {
-        // let props = this.props;
+        let doc = document;
+        let pgmNm = doc.getElementById("pgmNm").value;
+        let cTag = doc.getElementById("city");
+        let dTag = doc.getElementById("city-detail");
+        let city = doc.querySelectorAll("#city option")[cTag.value === "" ? "" : Number(cTag.value, 10) + 1];
+        let cityDetail = doc.getElementById("city-detail") !== null ? doc.querySelectorAll("#city-detail option")[dTag.value === "" ? "" : Number(dTag.value, 10) + 1] : undefined;
 
-        // props.setListData(
-        //     {
-        //         type : SET_ACTIVITY_LIST,
-        //         page : props.page
-        //     }
-        // );
+        if (!pgmNm && !city && !cityDetail) {
+
+        } else {
+            this.props.router.push({
+                pathname : "/" + this.page,
+                state : {
+                    p : pgmNm,
+                    c : city ? city.innerText : "",
+                    d : cityDetail ? cityDetail.innerText : ""
+                }
+            });
+        }
     }
 
     backHistory() {
