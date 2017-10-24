@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 // user modules
 import {CommonHeader} from "views/components";
 import {LoadingType1} from "views/components";
-import {SET_ACTIVITY_DETAIL, SET_SERVE_DETAIL, SET_VACATION_DETAIL,  setListData} from "modules/state";
+import {SET_ACTIVITY_DETAIL, SET_SERVE_DETAIL, SET_SINGO_DETAIL,  setListData} from "modules/state";
 
 class Detail extends Component {
 
@@ -43,8 +43,8 @@ class Detail extends Component {
             case "serve" :
                 type = SET_SERVE_DETAIL;
                 break;
-            case "vacation" :
-                type = SET_VACATION_DETAIL;
+            case "singo" :
+                type = SET_SINGO_DETAIL;
                 break;
             default :
                 break;
@@ -93,7 +93,7 @@ class Detail extends Component {
         switch(this.page) {
             case "activity" :
             case "serve" :
-            case "vacation" :
+            case "singo" :
                 title = this.props.detailData.data[0].pgmNm;
                 break;
             default :
@@ -144,9 +144,9 @@ const mapStateToProps = (_state, _ownProps) => {
             data = _state.serve.detailData;
             message = _state.serve.errorMessage;
             break;
-        case "vacation" :
-            data = _state.vacation.detailData;
-            message = _state.vacation.errorMessage;
+        case "singo" :
+            data = _state.singo.detailData;
+            message = _state.singo.errorMessage;
             break;
         default :
             break;

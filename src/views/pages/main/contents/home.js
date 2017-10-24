@@ -9,7 +9,7 @@ import home from "./home.css";
 // image
 import mainIconActivity from "assets/images/main-icon-activity.png";
 import mainIconServe from "assets/images/main-icon-serve.png";
-import mainIconVacation from "assets/images/main-icon-international.png";
+import mainIconSingo from "assets/images/main-icon-international.png";
 
 const st = classNames.bind(home);
 
@@ -74,10 +74,10 @@ class Home extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link className={st("international-bg")} to="/vacation">
+                        <Link className={st("international-bg")} to="/singo">
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 신고활동 프로그램</span>
-                                <img className={ st("int-img") } src={mainIconVacation} alt="main-icon-vacation" />
+                                <img className={ st("int-img") } src={mainIconSingo} alt="main-icon-singo" />
                             </div>
                         </Link>
                     </li>

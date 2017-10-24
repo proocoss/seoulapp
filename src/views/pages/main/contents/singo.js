@@ -5,24 +5,24 @@ import {connect} from "react-redux";
 import classNames from 'classnames/bind';
 
 // style
-import vacation from "./vacation.css";
+import singo from "./singo.css";
 
 // image
 import dateIcon from "assets/images/date-icon.png";
 
 // user modules
-import {SET_VACATION_LIST, setListData} from "modules/state";
+import {SET_SINGO_LIST, setListData} from "modules/state";
 import {MoreType1} from "views/components";
 
-const st = classNames.bind(vacation);
+const st = classNames.bind(singo);
 
-class Vacation extends Component {
+class Singo extends Component {
 
     /**
      * Life cycle func
     */
     constructor(props) {
-        console.log("constructor Vacation");
+        console.log("constructor Singo");
         super(props);
 
         this.makeList = this.makeList.bind(this);
@@ -30,42 +30,42 @@ class Vacation extends Component {
     }
 
     componentWillMount() {
-        console.log("componentWillMount Vacation");
+        console.log("componentWillMount Singo");
     }
 
     componentDidMount() {
-        console.log("componentDidMount Vacation");
+        console.log("componentDidMount Singo");
         let props = this.props; 
         let listData = props.listData;
         
         if (!listData) {
             props.setListData(
                 {
-                    type : SET_VACATION_LIST
+                    type : SET_SINGO_LIST
                 }
             );
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("componentWillReceiveProps Vacation");
+        console.log("componentWillReceiveProps Singo");
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate Vacation");
+        console.log("shouldComponentUpdate Singo");
         return true;
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log("componentWillUpdate Vacation");
+        console.log("componentWillUpdate Singo");
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("componentDidUpdate Vacation");
+        console.log("componentDidUpdate Singo");
     }
 
     componentWillUnmount() {
-        console.log("componentWillUnmount Vacation");
+        console.log("componentWillUnmount Singo");
         let props = this.props;
         if (props.cancelReq) {
             props.cancelReq();
@@ -128,7 +128,7 @@ class Vacation extends Component {
                 <Link className={ st("link-wrap") } 
                     to={
                         {
-                            pathname : "/detail/vacation/" + _item.key1, 
+                            pathname : "/detail/singo/" + _item.key1, 
                             query : { 
                                 t : encodeURIComponent(_item.pgmNm)} 
                             }
@@ -154,7 +154,7 @@ class Vacation extends Component {
 
         props.setListData(
             {
-                type : SET_VACATION_LIST,
+                type : SET_SINGO_LIST,
                 page : props.page
             }
         );
@@ -185,9 +185,9 @@ class Vacation extends Component {
 const mapStateToProps = (_state, _ownProps) => {
     return {
         cancelReq : _state.state.cancelReq,
-        page : _state.vacation.page,
-        listData : _state.vacation.listData,
-        errorMessage : _state.vacation.errorMessage
+        page : _state.singo.page,
+        listData : _state.singo.listData,
+        errorMessage : _state.singo.errorMessage
     };
 };
 
@@ -199,4 +199,4 @@ const mapDispatchToProps = (_dispatch, _ownProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Vacation);
+export default connect(mapStateToProps, mapDispatchToProps)(Singo);

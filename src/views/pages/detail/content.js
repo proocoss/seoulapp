@@ -128,7 +128,7 @@ class Content extends Component {
                     </div>
                 );
                 break;
-            case "vacation" :
+            case "singo" :
                 content = (
                     <div className={ st("content-wrap") }>
                         <table className={ st("table-wrap") }>
