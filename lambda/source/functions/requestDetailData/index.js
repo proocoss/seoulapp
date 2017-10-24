@@ -21,8 +21,8 @@ exports.handler = (_event, _context, _callback) => {
         case "getVolProgrmInfo" :
             options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&key1=" + path.key;
             break;
-        case "getVacationProgrmInfo" :
-            options.url = options.url + "YouthActivInfoVacationSrvc/" + apiPath + "?serviceKey=" + key + "&key1=" + path.key;
+        case "getSingoProgrmNewInfo" :
+            options.url = options.url + "YouthActivInfoSingoSrvc/" + apiPath + "?serviceKey=" + key + "&key1=" + path.key;
             break;
     }
 
@@ -85,7 +85,7 @@ exports.handler = (_event, _context, _callback) => {
                             );
                         });
                         break;
-                    case "getVacationProgrmInfo" :
+                    case "getSingoProgrmNewInfo" :
                         item.map((_item, _idx) => {
                             result.data.push(
                                 {
@@ -93,8 +93,6 @@ exports.handler = (_event, _context, _callback) => {
                                     pgmNm : _item.nums ? _item.pgmNm[0] : "",
                                     price : _item.price ? _item.price[0] : "",
                                     target : _item.target ? _item.target[0] : "",
-                                    sdate : _item.sdate ? _item.sdate[0] : "",
-                                    edate : _item.edate ? _item.edate[0] : "",
                                     managerNm : _item.managerNm ? _item.managerNm[0] : "",
                                     addr : _item.addr ? _item.addr[0] : "",
                                     zip : _item.zip ? _item.zip[0] : "",

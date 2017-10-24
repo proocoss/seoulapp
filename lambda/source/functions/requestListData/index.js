@@ -23,8 +23,8 @@ exports.handler = (_event, _context, _callback) => {
         case "getVolProgrmList" :
             options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
             break;
-        case "getVacationProgrmList" :
-            options.url = options.url + "YouthActivInfoVacationSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+        case "getSingoProgrmList" :
+            options.url = options.url + "YouthActivInfoSingoSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
             break;
     }
 
@@ -81,18 +81,19 @@ exports.handler = (_event, _context, _callback) => {
                                 );
                             });
                             break;
-                        case "getVacationProgrmList" :
+                        case "getSingoProgrmList" :
                             item.map((_item, _idx) => {
                                 result.data.push(
                                     {
                                         key1 : _item.key1 ? _item.key1[0] : "",
+                                        key2 : _item.key2 ? _item.key2[0] : "",
+                                        nums : _item.nums ? _item.nums[0] : "",
                                         organNm : _item.organNm ? _item.organNm[0] : "",
                                         pgmNm : _item.pgmNm ? _item.pgmNm[0] : "",
                                         price : _item.price ? _item.price[0] : "",
                                         target : _item.target ? _item.target[0] : "",
                                         sdate : _item.sdate ? _item.sdate[0] : "",
-                                        edate : _item.edate ? _item.edate[0] : "",
-                                        certYn : _item.certYn ? _item.certYn[0] : ""
+                                        certiYn : _item.certiYn ? _item.certiYn[0] : ""
                                     }
                                 );
                             });
