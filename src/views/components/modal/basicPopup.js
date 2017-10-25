@@ -1,34 +1,79 @@
 // npm modules
 import React, {Component} from "react";
+import Modal from 'react-bootstrap/lib/Modal';
 import classNames from 'classnames/bind';
 
 // style
-import moreType1 from "./moreType1.css";
+import basicPopup from "./basicPopup.css";
 
-// image
-import btnMoreIcon1 from "assets/images/btn-more-icon-1.png";
+const st = classNames.bind(basicPopup);
 
-const st = classNames.bind(moreType1);
-
-class MoreType1 extends Component {
+class BasicPopup extends Component {
     /**
      * Life cycle func
     */
     constructor(props) {
-        console.log("constructor MoreType1");
+        console.log("constructor BasicPopup");
         super(props);
 
+        this.state = {
+            isShow : true
+        };
+
+        this.close = this.close.bind(this);
+        this.unMount = this.unMount.bind(this);
+    }
+
+    componentWillMount() {
+        console.log("componentWillMount BasicPopup");
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount BasicPopup");
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("componentWillReceiveProps BasicPopup");
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("shouldComponentUpdate BasicPopup");
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("componentWillUpdate BasicPopup");
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate BasicPopup");
+    }
+
+    componentWillUnmount() {
+        console.log("componentWillUnmount BasicPopup");
+    }
+
+    close() {
+        this.setState({
+            isShow : false
+        });
+    }
+
+    unMount() {
+        this.props.togglePopup(false);
     }
 
     render() {
         return (
-            <div 
-                className={ st(this.props.type) }
-                onClick={this.props.requestList}>
-                {this.props.value} <img className={ st("more-icon") } src={btnMoreIcon1} alt="more-icon" />
-            </div>
+            <Modal className={ st("custom-wrap") } show={this.state.isShow} onExited={this.unMount} onHide={this.close}>
+              <Modal.Header className={ st("header-box") } closeButton>
+              </Modal.Header>
+              <Modal.Body className={ st("body-box") }>
+                <p>{this.props.message}</p>
+              </Modal.Body>
+            </Modal>
         );
     }
 }
 
-export default MoreType1;
+export default BasicPopup;
