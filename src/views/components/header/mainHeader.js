@@ -2,6 +2,8 @@
 import React, {Component} from "react";
 import classNames from 'classnames/bind';
 
+import {InformationPopup} from "views/components";
+
 // style
 import mainHeader from "./mainHeader.css";
 
@@ -19,28 +21,42 @@ class MainHeader extends Component {
         console.log("constructor MainHeader");
         super(props);
 
-        //this.testFunc = this.testFunc.bind(this);
+        // parent page name
+        this.showPopup = this.showPopup.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
+
+        this.state = {
+            notiNoInput : false
+        };
     }
 
-    // testFunc() {
-    //     var provider = new firebase.auth.FacebookAuthProvider();
-    //     firebase.auth().signInWithRedirect(provider);
-    // }
+    /**
+     * User func
+     */
+    showPopup() {
+        this.setState({
+            notiNoInput :true
+        });  
+    }
+
+    togglePopup(_show) {
+        this.setState({
+            notiNoInput :_show
+        });
+    }
 
     render() {
         return (
             <header>
-                <nav>
+                <nav className={ st("main-header-wrap") }>
                     <ul className={ st("header-wrap") }>
-                        <li className={ st("item", "menu-icon") }><img className={ st("icon-img") } src={ menuIcon } alt="menu-icon" /></li>
                         <li className={ st("item", "header-title") }><img className={ st("logo-img") } src={ logoIcon } alt="title-icon" /></li>
-                        {/*
-                        <li>
-                            <div onClick={this.testFunc}>페이스북 로그인</div>
-                        </li>
-                        */}
+                        <li className={ st("item", "menu-icon") } onClick={this.showPopup}><img className={ st("icon-img") } src={ menuIcon } alt="menu-icon" /></li>
                     </ul>
                 </nav>
+                {
+                    this.state.notiNoInput && <InformationPopup togglePopup={this.togglePopup} />
+                }
             </header>
         );
     }
