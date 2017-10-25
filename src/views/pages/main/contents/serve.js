@@ -190,14 +190,15 @@ class Serve extends Component {
 
     render() {
         let data = this.props.location.state ? this.props.searchData : this.props.listData;
+        let isData = data && data.data.length > 0;
 
         return(
             <section className={ st("list-wrap") }>
                 {
-                    data ? this.makeList() : ""
+                    isData ? this.makeList() : ""
                 }
                 {
-                    data
+                    isData
                         ?
                         <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :

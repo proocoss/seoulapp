@@ -26,7 +26,7 @@ class CommonHeader extends Component {
                         </li>
                         <li className={ st("item", "header-title", this.props.type + "-title") }>{ this.props.title }</li>
                         {
-                            type !== "detail" && type !== "search" 
+                            type !== "detail" && type !== "search" && type !== "search-list"
                                 ?
                                 <li className={ st("item", "search-icon") } onClick={ this.props.goSearch }>
                                     <img className={ st("icon-img") } src={ searchIcon } alt="search-icon" />

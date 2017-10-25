@@ -42,7 +42,11 @@ class Content extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("shouldComponentUpdate Content");
-        return true;
+        if (this.state.selectCity === nextState.selectCity && this.state.isDetailOption === nextState.isDetailOption) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {

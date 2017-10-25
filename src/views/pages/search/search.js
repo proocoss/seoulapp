@@ -5,6 +5,7 @@ import React, {Component} from "react";
 import {CommonHeader} from "views/components";
 import {LoadingType1} from "views/components";
 import {MoreType1} from "views/components";
+import {BasicPopup} from "views/components";
 
 class Search extends Component {
     /**
@@ -19,6 +20,11 @@ class Search extends Component {
         this.page = params.page;
         this.requestList = this.requestList.bind(this);
         this.backHistory = this.backHistory.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
+
+        this.state = {
+            notiNoInput : false
+        };
     }
 
     componentWillMount() {
@@ -62,7 +68,7 @@ class Search extends Component {
         let cityDetail = doc.getElementById("city-detail") !== null ? doc.querySelectorAll("#city-detail option")[dTag.value === "" ? "" : Number(dTag.value, 10) + 1] : undefined;
 
         if (!pgmNm && !city && !cityDetail) {
-
+            this.togglePopup(true);
         } else {
             this.props.router.push({
                 pathname : "/" + this.page,
@@ -79,6 +85,12 @@ class Search extends Component {
         this.props.router.goBack();
     }
 
+    togglePopup(_show) {
+        this.setState({
+            notiNoInput :_show
+        });
+    }
+
     render() {
 
         return (
@@ -90,6 +102,9 @@ class Search extends Component {
                 <MoreType1 type="search-btn-wrap" value="선택 완료" requestList={this.requestList} />
                 {
                     this.props.isLoading && <LoadingType1 />
+                }
+                {
+                    this.state.notiNoInput && <BasicPopup message="검색조건을 입력해주세요." togglePopup={this.togglePopup} />
                 }
             </div>
         );

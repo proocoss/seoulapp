@@ -14,6 +14,7 @@ class Main extends Component {
 
         // page name
         this.page = this.props.location.pathname;
+        this.searchQuery = this.props.location.state;
 
         this.getTitle = this.getTitle.bind(this);
         this.backHistory = this.backHistory.bind(this);
@@ -59,13 +60,13 @@ class Main extends Component {
 
         switch(this.page) {
             case "/activity" :
-                title = "청소년 인증활동 프로그램";
+                title = this.searchQuery ? "검색결과" : "청소년 인증활동 프로그램";
                 break;
             case "/serve" :
-                title = "청소년 자원봉사 프로그램";
+                title = this.searchQuery ? "검색결과" : "청소년 자원봉사 프로그램";
                 break;
             case "/singo" :
-                title = "청소년 신고활동 프로그램";
+                title = this.searchQuery ? "검색결과" : "청소년 신고활동 프로그램";
                 break;
             default :
                 title = "";
@@ -108,7 +109,7 @@ class Main extends Component {
                         ? 
                         <MainHeader /> 
                         : 
-                        <CommonHeader title={ this.getTitle() } type="list" backHistory={ this.backHistory } goSearch={ this.goSearch } />
+                        <CommonHeader title={ this.getTitle() } type={this.searchQuery ? "search-list" : "list"} backHistory={ this.backHistory } goSearch={ this.goSearch } />
                 }
                 { this.props.children }
                 {
