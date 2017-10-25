@@ -175,8 +175,10 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             break;
         case SET_ACTIVITY_SEARCH :
             // Init searchData before call http
-            currentPage = _getState().activity.searchPage;
-            currentListData = _getState().activity.searchData;
+            if (_obj.searchPage) {
+                currentPage = _getState().activity.searchPage;
+                currentListData = _getState().activity.searchData;
+            }
             _dispatch(
                 {
                     type : type,
@@ -187,8 +189,10 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             break;
         case SET_SERVE_SEARCH :
             // Init searchData before call http
-            currentPage = _getState().serve.searchPage;
-            currentListData = _getState().activity.searchData;
+            if (_obj.searchPage) {
+                currentPage = _getState().serve.searchPage;
+                currentListData = _getState().activity.searchData;
+            }
             _dispatch(
                 {
                     type : type,
@@ -199,8 +203,10 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             break;
         case SET_SINGO_SEARCH :
             // Init searchData before call http
-            currentPage = _getState().singo.searchPage;
-            currentListData = _getState().activity.searchData;
+            if (_obj.searchPage) {
+                currentPage = _getState().singo.searchPage;
+                currentListData = _getState().activity.searchData;
+            }
             _dispatch(
                 {
                     type : type,
@@ -296,14 +302,27 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
                     case SET_ACTIVITY_SEARCH :
                     case SET_SERVE_SEARCH :
                     case SET_SINGO_SEARCH :
-                        _dispatch(
-                            {
-                                type : type,
-                                searchPage : ++currentPage,
-                                searchData : _response.data,
-                                errorMessage : ""
-                            } 
-                        );
+                        if (currentListData) {
+                            currentListData.data = currentListData.data.concat(_response.data.data);
+
+                            _dispatch(
+                                {
+                                    type : type,
+                                    searchPage : ++currentPage,
+                                    searchData : currentListData,
+                                    errorMessage : ""
+                                } 
+                            );
+                        } else {
+                            _dispatch(
+                                {
+                                    type : type,
+                                    searchPage : ++currentPage,
+                                    searchData : _response.data,
+                                    errorMessage : ""
+                                } 
+                            );
+                        }
                         break;
                     default :
                         break;
