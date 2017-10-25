@@ -11,7 +11,7 @@ import singo from "./singo.css";
 import dateIcon from "assets/images/date-icon.png";
 
 // user modules
-import {SET_SINGO_LIST, SET_SINGO_SEARCH, setListData} from "modules/state";
+import {SET_SINGO_LIST, SET_SINGO_SEARCH, RESET_SINGO_SEARCH, setListData, resetSearchData} from "modules/state";
 import {MoreType1} from "views/components";
 
 const st = classNames.bind(singo);
@@ -42,8 +42,8 @@ class Singo extends Component {
         if (searchQuery) {
             props.setListData(
                 {
-                    type : SET_SINGO_LIST,
-                    query : searchQuery
+                    type : SET_SINGO_SEARCH,
+                    searchQuery : searchQuery
                 }
             );
         } else {
@@ -77,9 +77,16 @@ class Singo extends Component {
     componentWillUnmount() {
         console.log("componentWillUnmount Singo");
         let props = this.props;
+
         if (props.cancelReq) {
             props.cancelReq();
         }
+
+        props.resetSearchData(
+            {
+                type : RESET_SINGO_SEARCH
+            }
+        );
     }
 
     /**
@@ -167,7 +174,7 @@ class Singo extends Component {
             props.setListData(
                 {
                     type : SET_SINGO_SEARCH,
-                    query : searchQuery,
+                    searchQuery : searchQuery,
                     searchPage : props.searchPage
                 }
             );
@@ -216,6 +223,9 @@ const mapDispatchToProps = (_dispatch, _ownProps) => {
     return {
         setListData : (_obj) => {
             return _dispatch(setListData(_obj));
+        },
+        resetSearchData : (_obj) => {
+            return _dispatch(resetSearchData(_obj));
         }
     };
 };

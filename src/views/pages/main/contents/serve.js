@@ -9,10 +9,10 @@ import serve from "./serve.css";
 
 // image
 import dateIcon from "assets/images/date-icon.png";
-import {MoreType1} from "views/components";
 
 // user modules
-import {SET_SERVE_LIST, SET_SERVE_SEARCH, setListData} from "modules/state";
+import {SET_SERVE_LIST, SET_SERVE_SEARCH, RESET_SERVE_SEARCH, setListData, resetSearchData} from "modules/state";
+import {MoreType1} from "views/components";
 
 const st = classNames.bind(serve);
 
@@ -42,8 +42,8 @@ class Serve extends Component {
         if (searchQuery) {
             props.setListData(
                 {
-                    type : SET_SERVE_LIST,
-                    query : searchQuery
+                    type : SET_SERVE_SEARCH,
+                    searchQuery : searchQuery
                 }
             );
         } else {
@@ -78,9 +78,16 @@ class Serve extends Component {
     componentWillUnmount() {
         console.log("componentWillUnmount Serve");
         let props = this.props;
+
         if (props.cancelReq) {
             props.cancelReq();
         }
+
+        props.resetSearchData(
+            {
+                type : RESET_SERVE_SEARCH
+            }
+        );
     }
 
     /**
@@ -167,7 +174,7 @@ class Serve extends Component {
             props.setListData(
                 {
                     type : SET_SERVE_SEARCH,
-                    query : searchQuery,
+                    searchQuery : searchQuery,
                     searchPage : props.searchPage
                 }
             );
@@ -216,6 +223,9 @@ const mapDispatchToProps = (_dispatch, _ownProps) => {
     return {
         setListData : (_obj) => {
             return _dispatch(setListData(_obj));
+        },
+        resetSearchData : (_obj) => {
+            return _dispatch(resetSearchData(_obj));
         }
     };
 };

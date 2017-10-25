@@ -47,7 +47,7 @@ const requestData = (_obj, _dispatch) => {
     let key = _obj.key;
     let page = _obj.page ? _obj.page * 10 : 10;
     let searchPage = _obj.searchPage ? _obj.searchPage * 10 : 10;
-    let query = _obj.query;
+    let query = _obj.searchQuery;
     let queryString = "";
 
     switch(type) {
@@ -73,8 +73,24 @@ const requestData = (_obj, _dispatch) => {
                 }
             );
             break;
+        case SET_SERVE_SEARCH :
+            queryString = query.p + "|" + query.c + "|" + query.d;
+            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getVolProgrmList/" + searchPage + "/" + queryString,
+                {
+                    cancelToken: source.token
+                }
+            );
+            break;
         case SET_SINGO_LIST :
             result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getSingoProgrmList/" + page,
+                {
+                    cancelToken: source.token
+                }
+            );
+            break;
+        case SET_SINGO_SEARCH :
+            queryString = query.p + "|" + query.c + "|" + query.d;
+            result = axios.get("https://kytza9xk2k.execute-api.ap-northeast-1.amazonaws.com/content/list/getSingoProgrmList/" + searchPage + "/" + queryString,
                 {
                     cancelToken: source.token
                 }
@@ -123,6 +139,9 @@ export const SET_SINGO_LIST = "app/modules/state/SET_SINGO_LIST";
 export const SET_ACTIVITY_SEARCH = "app/modules/state/SET_ACTIVITY_SEARCH";
 export const SET_SERVE_SEARCH = "app/modules/state/SET_SERVE_SEARCH";
 export const SET_SINGO_SEARCH = "app/modules/state/SET_SINGO_SEARCH";
+export const RESET_ACTIVITY_SEARCH = "app/modules/state/RESET_ACTIVITY_SEARCH";
+export const RESET_SERVE_SEARCH = "app/modules/state/RESET_SERVE_SEARCH";
+export const RESET_SINGO_SEARCH = "app/modules/state/RESET_SINGO_SEARCH";
 
 // Detail
 export const SET_ACTIVITY_DETAIL = "app/modules/state/SET_ACTIVITY_DETAIL";
@@ -143,9 +162,22 @@ export const setPageType = (_pageType) => ({
     pageType : _pageType
 });
 
+export const resetSearchData = (_obj) => (_dispatch, _getState) => {
+    let type = _obj.type;
+
+    _dispatch(
+        {
+            type : type,
+            searchData : undefined,
+            searchPage : 1,
+            errorMessage : ""
+        }
+    );
+};
+
 export const setListData = (_obj) => (_dispatch, _getState) => {
     let currentListData;
-    let currentPage;
+    let currentPage = 1;
     let type = _obj.type;
 
     switch(type) {
@@ -175,45 +207,18 @@ export const setListData = (_obj) => (_dispatch, _getState) => {
             break;
         case SET_ACTIVITY_SEARCH :
             // Init searchData before call http
-            if (_obj.searchPage) {
-                currentPage = _getState().activity.searchPage;
-                currentListData = _getState().activity.searchData;
-            }
-            _dispatch(
-                {
-                    type : type,
-                    searchData : undefined,
-                    errorMessage : ""
-                }
-            );
+            currentPage = _getState().activity.searchPage;
+            currentListData = _getState().activity.searchData;
             break;
         case SET_SERVE_SEARCH :
             // Init searchData before call http
-            if (_obj.searchPage) {
-                currentPage = _getState().serve.searchPage;
-                currentListData = _getState().activity.searchData;
-            }
-            _dispatch(
-                {
-                    type : type,
-                    searchData : undefined,
-                    errorMessage : ""
-                }
-            );
+            currentPage = _getState().serve.searchPage;
+            currentListData = _getState().serve.searchData;
             break;
         case SET_SINGO_SEARCH :
             // Init searchData before call http
-            if (_obj.searchPage) {
-                currentPage = _getState().singo.searchPage;
-                currentListData = _getState().activity.searchData;
-            }
-            _dispatch(
-                {
-                    type : type,
-                    searchData : undefined,
-                    errorMessage : ""
-                }
-            );
+            currentPage = _getState().singo.searchPage;
+            currentListData = _getState().singo.searchData;
             break;
         default :
             break;
@@ -387,6 +392,12 @@ const activity = (_state = initData.activity, _action) => {
                 searchData : _action.searchData,
                 errorMessage : _action.errorMessage
             });
+        case RESET_ACTIVITY_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                searchData : _action.searchData,
+                errorMessage : _action.errorMessage
+            });
         case SET_ACTIVITY_DETAIL :
             return Object.assign({}, _state, {
                 detailData : _action.detailData,
@@ -408,7 +419,13 @@ const serve = (_state = initData.serve, _action) => {
         case SET_SERVE_SEARCH :
             return Object.assign({}, _state, {
                 searchPage : _action.searchPage,
-                listData : _action.searchData,
+                searchData : _action.searchData,
+                errorMessage : _action.errorMessage
+            });
+        case RESET_SERVE_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                searchData : _action.searchData,
                 errorMessage : _action.errorMessage
             });
         case SET_SERVE_DETAIL :
@@ -432,7 +449,13 @@ const singo = (_state = initData.singo, _action) => {
         case SET_SINGO_SEARCH :
             return Object.assign({}, _state, {
                 searchPage : _action.searchPage,
-                listData : _action.searchData,
+                searchData : _action.searchData,
+                errorMessage : _action.errorMessage
+            });
+        case RESET_SINGO_SEARCH :
+            return Object.assign({}, _state, {
+                searchPage : _action.searchPage,
+                searchData : _action.searchData,
                 errorMessage : _action.errorMessage
             });
         case SET_SINGO_DETAIL :

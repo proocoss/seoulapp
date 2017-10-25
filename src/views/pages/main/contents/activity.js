@@ -11,7 +11,7 @@ import activity from "./activity.css";
 import dateIcon from "assets/images/date-icon.png";
 
 // user modules
-import {SET_ACTIVITY_LIST, SET_ACTIVITY_SEARCH, setListData} from "modules/state";
+import {SET_ACTIVITY_LIST, SET_ACTIVITY_SEARCH, RESET_ACTIVITY_SEARCH, setListData, resetSearchData} from "modules/state";
 import {MoreType1} from "views/components";
 
 const st = classNames.bind(activity);
@@ -43,7 +43,7 @@ class Activity extends Component {
             props.setListData(
                 {
                     type : SET_ACTIVITY_SEARCH,
-                    query : searchQuery
+                    searchQuery : searchQuery
                 }
             );
         } else {
@@ -77,9 +77,16 @@ class Activity extends Component {
     componentWillUnmount() {
         console.log("componentWillUnmount Activity");
         let props = this.props;
+
         if (props.cancelReq) {
             props.cancelReq();
         }
+
+        props.resetSearchData(
+            {
+                type : RESET_ACTIVITY_SEARCH
+            }
+        );
     }
 
     /**
@@ -165,7 +172,7 @@ class Activity extends Component {
             props.setListData(
                 {
                     type : SET_ACTIVITY_SEARCH,
-                    query : searchQuery,
+                    searchQuery : searchQuery,
                     searchPage : props.searchPage
                 }
             );
@@ -214,6 +221,9 @@ const mapDispatchToProps = (_dispatch, _ownProps) => {
     return {
         setListData : (_obj) => {
             return _dispatch(setListData(_obj));
+        },
+        resetSearchData : (_obj) => {
+            return _dispatch(resetSearchData(_obj));
         }
     };
 };
