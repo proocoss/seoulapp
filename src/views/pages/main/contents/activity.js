@@ -12,7 +12,7 @@ import dateIcon from "assets/images/date-icon.png";
 
 // user modules
 import {SET_ACTIVITY_LIST, SET_ACTIVITY_SEARCH, RESET_ACTIVITY_SEARCH, setListData, resetSearchData} from "modules/state";
-import {MoreType1} from "views/components";
+import {MoreType1, Empty} from "views/components";
 
 const st = classNames.bind(activity);
 
@@ -189,7 +189,7 @@ class Activity extends Component {
     render() {
         let data = this.props.location.state ? this.props.searchData : this.props.listData;
         let isData = data && data.data.length > 0;
-        
+
         return(
             <section className={ st("list-wrap") }>
                 {
