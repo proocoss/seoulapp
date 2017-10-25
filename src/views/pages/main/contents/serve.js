@@ -12,7 +12,7 @@ import dateIcon from "assets/images/date-icon.png";
 
 // user modules
 import {SET_SERVE_LIST, SET_SERVE_SEARCH, RESET_SERVE_SEARCH, setListData, resetSearchData} from "modules/state";
-import {MoreType1} from "views/components";
+import {MoreType1, Empty} from "views/components";
 
 const st = classNames.bind(serve);
 
@@ -190,15 +190,14 @@ class Serve extends Component {
 
     render() {
         let data = this.props.location.state ? this.props.searchData : this.props.listData;
-        let isData = data && data.data.length > 0;
 
         return(
             <section className={ st("list-wrap") }>
                 {
-                    isData ? this.makeList() : ""
+                    data ? (data.data.length > 0 ? this.makeList() : <Empty message="검색결과가 없습니다." />) : ""
                 }
                 {
-                    isData
+                    data && data.data.length > 0
                         ?
                         <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :
