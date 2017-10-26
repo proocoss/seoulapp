@@ -315,6 +315,7 @@ module.exports = {
         // Pending further investigation:
         // https://github.com/mishoo/UglifyJS2/issues/2011
         comparisons: false,
+        drop_console: true // [jh.lee] console.log remove for production
       },
       output: {
         comments: false,
