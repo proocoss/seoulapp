@@ -168,7 +168,7 @@ module.exports = {
           // [jh.lee] global css config. except node_modules.
           {
             test: /\.css$/,
-            exclude: /node_modules/, // [jh.lee] exclude node_modules folder
+            exclude: [/node_modules/, /assets/], // [jh.lee] exclude node_modules folder
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -215,7 +215,7 @@ module.exports = {
           // [jh.lee] node_modules css config. only bootstrap and reset css config. not css module config.
           {
             test: /\.css$/,
-            include: /node_modules/, // [jh.lee] only node_modules folder
+            include: [/node_modules/, /assets/], // [jh.lee] only node_modules folder
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
