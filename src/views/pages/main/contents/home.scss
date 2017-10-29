@@ -29,22 +29,28 @@ section {
                     }
 
                     .title {
-                        margin-bottom: 10px;
+                        margin-bottom: 24px;
                         width: 100%;
                         font-size: 24px;
                         font-weight: bold;
                     }
 
-                    .act-img {
-                        width: 62px;
-                    }
+                    .img-wrap {
+                        margin: auto;
+                        width: 80px;
+                        height: 80px;
 
-                    .ser-img {
-                        width: 68px;
-                    }
+                        .act-img {
+                            width: 77.2%;
+                        }
 
-                    .int-img {
-                        width: 62px;
+                        .ser-img {
+                            height: 85%;
+                        }
+
+                        .int-img {
+                            height: 90%;
+                        }
                     }
                 }
             }

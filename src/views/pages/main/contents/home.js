@@ -69,7 +69,7 @@ class Home extends Component {
                         <Link className={ st("activity-bg") } to="/activity">
                             <div className={ st("info-box") }>
                                 <span className={ st("title") }>청소년 인증활동 프로그램</span>
-                                <img className={ st("act-img") } src={mainIconActivity} alt="main-icon-activity" />
+                                <div className={ st("img-wrap") }><img className={ st("act-img") } src={mainIconActivity} alt="main-icon-activity" /></div>
                             </div>
                         </Link>
                     </li>
@@ -77,7 +77,7 @@ class Home extends Component {
                         <Link className={st("international-bg")} to="/singo">
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 신고활동 프로그램</span>
-                                <img className={ st("int-img") } src={mainIconSingo} alt="main-icon-singo" />
+                                <div className={ st("img-wrap") }><img className={ st("int-img") } src={mainIconSingo} alt="main-icon-singo" /></div>
                             </div>
                         </Link>
                     </li>
@@ -85,7 +85,7 @@ class Home extends Component {
                         <Link className={st("serve-bg")} to="/serve">
                             <div className={st("info-box")}>
                                 <span className={st("title")}>청소년 자원봉사 프로그램</span>
-                                <img className={ st("ser-img") } src={mainIconServe} alt="main-icon-serve" />
+                                <div className={ st("img-wrap") }><img className={ st("ser-img") } src={mainIconServe} alt="main-icon-serve" /></div>
                             </div>
                         </Link>
                     </li>
