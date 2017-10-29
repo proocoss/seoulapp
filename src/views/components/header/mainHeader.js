@@ -8,7 +8,7 @@ import {InformationPopup} from "views/components";
 import mainHeader from "./mainHeader.css";
 
 // image
-import menuIcon from "assets/images/menu-icon.png";
+import menuIcon from "assets/images/question-icon.png";
 import logoIcon from "assets/images/logo-icon.png";
 
 const st = classNames.bind(mainHeader);

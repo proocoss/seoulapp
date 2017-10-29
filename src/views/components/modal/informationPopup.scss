@@ -1,32 +1,51 @@
 .custom-wrap {
-    
-    .header-box {
-        border: none;
-    }
 
     .body-box {
         
         .infor-wrap {
+            margin-bottom: 10px;
 
             .title {
+                margin-bottom: 6px;
                 font-weight: bold;
+                font-size: 15px;
             }
 
             .message {
-
+                font-size: 11px;
+                color: #444444;
+                line-height: 1.5;
             }
         }
 
         .activity {
-
+            color: #50d2c2;
         }
 
         .singo {
-
+            color: #d667cd;
         }
 
         .serve {
+            color: #6563a4;
+        }
+    }
 
+    .footer-box {
+        padding: 0px;
+        border: none;
+
+        button {
+            padding: 0px;
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background: #50d2c2;
+            border: none;
+            border-radius: 0px;
+            box-shadow: none;
         }
     }
 }

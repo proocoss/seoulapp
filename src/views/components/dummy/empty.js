@@ -5,6 +5,9 @@ import classNames from 'classnames/bind';
 // style
 import empty from "./empty.css";
 
+// image
+import emptyBg from "assets/images/empty-bg.png";
+
 const st = classNames.bind(empty);
 
 class Empty extends Component {
@@ -48,6 +51,7 @@ class Empty extends Component {
     render() {
         return (
             <section className={ st("empty-wrap") }>
+                <img src={emptyBg} alt="empty-bg" />
                 <p>{this.props.message}</p>
             </section>
         );

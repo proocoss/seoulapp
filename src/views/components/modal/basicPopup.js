@@ -1,6 +1,7 @@
 // npm modules
 import React, {Component} from "react";
 import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/lib/Button';
 import classNames from 'classnames/bind';
 
 // style
@@ -66,11 +67,12 @@ class BasicPopup extends Component {
     render() {
         return (
             <Modal className={ st("custom-wrap") } show={this.state.isShow} onExited={this.unMount} onHide={this.close}>
-              <Modal.Header className={ st("header-box") } closeButton>
-              </Modal.Header>
-              <Modal.Body className={ st("body-box") }>
-                <p>{this.props.message}</p>
-              </Modal.Body>
+                <Modal.Body className={ st("body-box") }>
+                    <p>{this.props.message}</p>
+                </Modal.Body>
+                <Modal.Footer className={ st("footer-box") }>
+                    <Button onClick={this.close}>확인</Button>
+                </Modal.Footer>
             </Modal>
         );
     }
