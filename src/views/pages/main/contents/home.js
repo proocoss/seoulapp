@@ -8,7 +8,7 @@ import home from "./home.css";
 
 // image
 import mainIconActivity from "assets/images/main-icon-activity.png";
-import mainIconServe from "assets/images/main-icon-serve.png";
+// import mainIconServe from "assets/images/main-icon-serve.png";
 import mainIconSingo from "assets/images/main-icon-international.png";
 
 const st = classNames.bind(home);
@@ -81,6 +81,7 @@ class Home extends Component {
                             </div>
                         </Link>
                     </li>
+                    {/*
                     <li>
                         <Link className={st("serve-bg")} to="/serve">
                             <div className={st("info-box")}>
@@ -89,6 +90,7 @@ class Home extends Component {
                             </div>
                         </Link>
                     </li>
+                    */}
                 </ul>
             </section>
         );

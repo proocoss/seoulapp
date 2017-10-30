@@ -86,10 +86,12 @@ class InformationPopup extends Component {
                         인터넷 홈페이지 등에 신고내용이 공개됨으로서 19세 미만 청소년을 대상으로 하는 안전이 보장된 숙박형 및 비숙박형 청소년수련활동 프로그램.
                     </li>
                 </ul>
+                {/*
                 <ul className={ st("infor-wrap", "serve") }>
                     <li className={ st("title") }>청소년 자원봉사 프로그램이란?</li>
                     <li className={ st("message") }>청소년이 자원봉사를 경험할 수 있게 여성가족부 청소년 활동진흥원에서 제공하는 자원봉사 프로그램</li>
                 </ul>
+                */}
               </Modal.Body>
                 <Modal.Footer className={ st("footer-box") }>
                     <Button onClick={this.close}>확인</Button>
