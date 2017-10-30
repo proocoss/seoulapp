@@ -111,7 +111,7 @@ class Detail extends Component {
 
         return (
             <div>
-                <CommonHeader title={ decodeURIComponent(this.props.location.query.t) } type="detail" backHistory={ this.backHistory } />
+                <CommonHeader title={ decodeURIComponent(this.props.location.query.t).replace(/&quot/g,"\"") } type="detail" backHistory={ this.backHistory } />
                 {
                     this.props.detailData &&
                         React.cloneElement(
