@@ -63,7 +63,7 @@ class Home extends Component {
 
     render() {
         return(
-            <section>
+            <section className={ st("list-wrap") }>
                 <ul>
                     <li>
                         <Link className={ st("activity-bg") } to="/activity">
