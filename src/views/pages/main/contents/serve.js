@@ -4,6 +4,9 @@ import {Link} from "react-router";
 import {connect} from "react-redux";
 import classNames from 'classnames/bind';
 
+// user modules
+import {BasicPopup} from "views/components";
+
 // style
 import serve from "./serve.css";
 
@@ -27,6 +30,12 @@ class Serve extends Component {
 
         this.makeList = this.makeList.bind(this);
         this.requestList = this.requestList.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
+        this.checkProgram = this.checkProgram.bind(this);
+
+        this.state = {
+            noData : false
+        };
     }
 
     componentWillMount() {
@@ -93,55 +102,79 @@ class Serve extends Component {
     /**
      * User func
      */
+
+    checkProgram(_event) {
+        let count = _event.target.closest("a").getAttribute("data-count");
+
+        if (count === "0") {
+            _event.preventDefault();
+            this.setState({
+                noData :true
+            });
+            return false
+        }
+    }
+
+    togglePopup(_show) {
+        this.setState({
+            noData :_show
+        });
+    }
+     
     makeList() {
         let items = this.props.location.state ? this.props.searchData.data : this.props.listData.data;
 
         return items.map((_item, _idx) => {
-            let splitItem = _item.target.split(",");
-            let result = [];
+            // let splitItem = _item.target.split(",");
+            // let splitTitle = _item.target.split("(");
+            // let count = splitTitle[1].replace(/[^0-9]/g, "");
+            // let result = [];
+            let count = _item.target.replace(/[^0-9]/g, "");
 
-            result.push(splitItem.map((_item, _idx) => {
-                let count = "";
-                let type = "";
-                let bgType = "";
-
-                count = _item.replace(/[^0-9]/g, "");
+//             result.push(splitItem.map((_item, _idx) => {
+//                 let count = "";
+//                 let type = "";
+//                 let bgType = "";
+// 초,중,고,대,일반,미재학(2명)
+//                 count = _item.replace(/[^0-9]/g, "");
                 
-                switch(_item.charAt(0)) {
-                    case "초" :
-                        bgType = "ele";
-                        type = "초";
-                        break;
-                    case "중" :
-                        bgType = "mid";
-                        type = "중";
-                        break;
-                    case "고" :
-                        bgType = "hig";
-                        type = "고";
-                        break;
-                    case "학" :
-                        bgType = "par";
-                        type = "학";
-                        break;
-                    case "대" :
-                        bgType = "uni";
-                        type = "대";
-                        break;
-                    default :
-                        break;
-                }
+//                 switch(_item.charAt(0)) {
+//                     case "초" :
+//                         bgType = "ele";
+//                         type = "초";
+//                         break;
+//                     case "중" :
+//                         bgType = "mid";
+//                         type = "중";
+//                         break;
+//                     case "고" :
+//                         bgType = "hig";
+//                         type = "고";
+//                         break;
+//                     case "학" :
+//                         bgType = "par";
+//                         type = "학";
+//                         break;
+//                     case "대" :
+//                         bgType = "uni";
+//                         type = "대";
+//                         break;
+//                     default :
+//                         break;
+//                 }
 
-                return (
-                    <div className={ st("target") }>
-                        <span className={ st("item", "type", bgType) }>{type}</span>
-                        <span className={ st("item", "count", "c-" + bgType) }>{count}</span>
-                    </div>
-                );
-            }));
+//                 return (
+//                     <div className={ st("target") }>
+//                         <span className={ st("item", "type", bgType) }>{type}</span>
+//                         <span className={ st("item", "count", "c-" + bgType) }>{count}</span>
+//                     </div>
+//                 );
+//             }));
 
             return (
-                <Link className={ st("link-wrap") } 
+                <Link className={ st("link-wrap") }
+                    data-count={count} 
+                    onClick={this.checkProgram}
                     to={
                         { 
                             pathname : "/detail/serve/" + _item.key1, 
@@ -157,7 +190,14 @@ class Serve extends Component {
                             <li className={ st("item") }>참가비 <span className={ st("price") }>{_item.price}</span></li>
                         </ul>
                         <ul className={ st("term-wrap") }>
-                            <li className={ st("target-wrap") }>{result}</li>
+                            <li className={ st("target-wrap") }>
+                            {/*
+                                <div className={ st("target") }>
+                                    <span className={ st("item", "type", bgType) }>{type}</span>
+                                    <span className={ st("item", "count", "c-" + bgType) }>{count}</span>
+                                </div>
+                                                        */}
+                            </li>
                             <li className={ st("date-wrap") }><img className={ st("date-icon") } src={dateIcon} alt="date-icon" /> {_item.sdate.replace(/\//gi, ".")}</li>
                         </ul>
                     </ul>
@@ -202,6 +242,9 @@ class Serve extends Component {
                         <MoreType1 type="main-btn-type" value="더보기" requestList={this.requestList} />
                         :
                         ""
+                }
+                {
+                    this.state.noData && <BasicPopup message="종료된 프로그램입니다." togglePopup={this.togglePopup} />
                 }
             </section>
         );

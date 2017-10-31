@@ -33,9 +33,9 @@ exports.handler = (_event, _context, _callback) => {
             break;
         case "getVolProgrmList" :
             if (query) {
-                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + query;
+                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + "&sdate=20170101&edate=20171231" + query;
             } else {
-                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo; 
+                options.url = options.url + "YouthActivInfoVolSrvc/" + apiPath + "?serviceKey=" + key + "&numOfRows=10&pageNo=" + pageNo + "&sdate=20170101&edate=20171231"; 
             }
             break;
         case "getSingoProgrmList" :

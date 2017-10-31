@@ -53,7 +53,7 @@ exports.handler = (_event, _context, _callback) => {
                                 {
                                     nums : _item.nums ? _item.nums[0] : "",
                                     orgnNm : _item.orgnNm ? _item.orgnNm[0] : "",
-                                    pgmNm : _item.nums ? _item.pgmNm[0] : "",
+                                    pgmNm : _item.pgmNm ? _item.pgmNm[0] : "",
                                     price : _item.price ? _item.price[0] : "",
                                     target : _item.target ? _item.target[0] : "",
                                     managerNm : _item.managerNm ? _item.managerNm[0] : "",
@@ -70,7 +70,7 @@ exports.handler = (_event, _context, _callback) => {
                             result.data.push(
                                 {
                                     orgnNm : _item.orgnNm ? _item.orgnNm[0] : "",
-                                    pgmNm : _item.nums ? _item.pgmNm[0] : "",
+                                    pgmNm : _item.pgmNm ? _item.pgmNm[0] : "",
                                     price : _item.price ? _item.price[0] : "",
                                     target : _item.target ? _item.target[0] : "",
                                     sdate : _item.sdate ? _item.sdate[0] : "",
@@ -90,7 +90,7 @@ exports.handler = (_event, _context, _callback) => {
                             result.data.push(
                                 {
                                     orgnNm : _item.orgnNm ? _item.orgnNm[0] : "",
-                                    pgmNm : _item.nums ? _item.pgmNm[0] : "",
+                                    pgmNm : _item.pgmNm ? _item.pgmNm[0] : "",
                                     price : _item.price ? _item.price[0] : "",
                                     target : _item.target ? _item.target[0] : "",
                                     managerNm : _item.managerNm ? _item.managerNm[0] : "",
