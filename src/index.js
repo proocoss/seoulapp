@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 // service worker for create react app
-import registerServiceWorker from "registerServiceWorker";
+//import registerServiceWorker from "registerServiceWorker";
 
 // firebase module for login
 //import firebase from "fire";
@@ -18,4 +18,4 @@ import "reset-css/reset.css";
 import "assets/styles/common.css";
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+//registerServiceWorker();
